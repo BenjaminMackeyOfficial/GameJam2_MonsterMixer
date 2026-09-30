@@ -1,0 +1,220 @@
+using System.Reflection.Emit;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+
+public class PlayerController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private PlayerStateManager stateManager;
+    private GameObject cam;
+    private Camera camCamera;
+
+    //adjustables
+    [SerializeField] float yawLookSensitivity;
+    [SerializeField] float pitchLookSensitivity;
+
+    [SerializeField] float maxLookPitch;
+
+    [SerializeField] float maxSlopeAngle;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float jumpHeight;
+    [SerializeField] float downForceWhileInAir;
+
+    [SerializeField] float Bouncyness;
+    //
+
+    //movment vectors
+    private Vector3 targetDir;
+    private Quaternion lookRot;
+
+    private float xLookAngle;
+    private float yLookAngle;
+
+    private float movement;
+    //
+
+    //inputs
+    [SerializeField] InputActionAsset inputActions;
+
+    private InputAction move;
+    //private InputAction jump; (i dont think we're having a jump?)
+    private InputAction look;
+    private InputAction sprint;
+    //
+
+    
+    //capsule colider stuff
+    private Vector3 heightFromCent;
+    //
+
+    [SerializeField] GameObject[] objs;
+    
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        cam = transform.Find("Camera").gameObject;
+        stateManager = GetComponent<PlayerStateManager>();
+        if (stateManager == null) stateManager = gameObject.AddComponent<PlayerStateManager>();
+
+        if(inputActions == null) this.enabled = false;
+
+        move = inputActions.FindAction("Player/Move");
+        //jump = inputActions.FindAction("Player/Jump");
+        look = inputActions.FindAction("Player/Look");
+        sprint = inputActions.FindAction("Player/Sprint");
+
+        heightFromCent =  Vector3.up * (transform.localScale.y / 4);
+
+        //jump.started += Jump;
+        //jump.canceled += Jump;
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    float jumpin = 0f;
+    private void Jump(InputAction.CallbackContext inputAction)
+    {
+        if (stateManager.dead) return;
+        if (inputAction.ReadValue<float>() > 0f)
+        {
+            jumpin += jumpHeight * 10f;
+        }
+        else
+        {
+            jumpin = 0;
+        }
+    }
+
+    private void rotateForLook()
+    {
+        if (stateManager.dead) return;
+        Vector2 lookInput = -look.ReadValue<Vector2>();
+
+        yLookAngle = Mathf.Clamp(yLookAngle + lookInput.y * pitchLookSensitivity * Time.deltaTime, -maxLookPitch, maxLookPitch);
+        xLookAngle -= lookInput.x * yawLookSensitivity * Time.deltaTime;
+
+        lookRot = Quaternion.Euler(
+            yLookAngle,
+            xLookAngle,
+            0
+            );
+    }
+
+    private void GetReqMoveDir()
+    {
+        Vector3 adjustedForward;
+        Vector3 adjustedRight;
+
+        float inputted = move.ReadValue<Vector2>().y;
+
+        Quaternion rot = Quaternion.AngleAxis(xLookAngle, stateManager.groundUp);
+        Quaternion rot2 = Quaternion.AngleAxis(xLookAngle + 90f, stateManager.groundUp);
+        adjustedForward = rot * transform.forward;
+        adjustedRight = rot2 * transform.forward;
+
+        adjustedForward.Normalize();
+        adjustedRight.Normalize();
+
+        targetDir = (adjustedForward * move.ReadValue<Vector2>().y) + 
+        (adjustedRight * move.ReadValue<Vector2>().x);
+        targetDir.Normalize();
+    }
+
+
+    //outside vars for memory assignment
+    Vector3 sphere1 = Vector3.zero;
+    Vector3 sphere2 = Vector3.zero;
+    private bool CheckForCollisions(Vector3 dir, out RaycastHit hit)
+    {
+        sphere1 = transform.position + heightFromCent;
+        sphere2 = transform.position - heightFromCent;
+
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir, out hit, walkSpeed * Time.deltaTime);
+    }
+    private bool CheckForCollisions(Vector3 dir)
+    {
+        sphere1 = transform.position + heightFromCent;
+        sphere2 = transform.position - heightFromCent;
+
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir,walkSpeed * Time.deltaTime);
+    }
+    private Vector3 AdjustMoveDir(RaycastHit hit)
+    {
+        Vector3 returnVec = Vector3.Reflect(targetDir, hit.normal);
+
+        float speedLoss = Mathf.Abs((returnVec - targetDir).magnitude) * Bouncyness;
+
+        returnVec *= speedLoss;
+        return returnVec;
+    }
+
+
+    void Update()
+    {
+        prog = math.lerp(prog, targProg, 0.1f);
+        camCamera.fieldOfView = Mathf.Lerp(FOV, zoomInFov, prog);
+
+        rotateForLook();
+        cam.transform.rotation = lookRot;
+    }
+
+
+
+    //
+    private float FOV = 90;
+    private float zoomInFov = 75;
+    private float prog = 0f;
+    private float targProg = 0f;
+
+    //
+    public void ZoomIn()
+    {
+        targProg = 1;
+    }
+    public void ZoomOut()
+    {
+        targProg = 0;
+    }
+    private void Start()
+    {
+        camCamera = cam.GetComponent<Camera>();
+    }
+
+    void FixedUpdate()
+    {
+        if (stateManager.dead) return;
+        Vector3 ground= stateManager.checkGround(maxSlopeAngle);
+
+        GetReqMoveDir();
+
+        Vector3 newMovePos;
+        float velClamper = walkSpeed * Mathf.Clamp01(1f - (rb.linearVelocity.magnitude / walkSpeed));
+        if(stateManager.grounded) 
+        {
+            newMovePos = (targetDir * Time.deltaTime * velClamper * 10000f);
+
+            //rb.AddForce(Vector3.up * jumpin, ForceMode.Impulse); // jumping
+            rb.AddForce(newMovePos, ForceMode.Force); //moving 
+            
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.95f, rb.linearVelocity.y, rb.linearVelocity.z *0.95f);
+        }
+        else 
+        {
+            rb.AddForce(Vector3.down * downForceWhileInAir * 100f);
+        }  
+    }
+
+    public bool Teleport(Vector3 pos)
+    {
+        if(Physics.OverlapCapsule(
+                pos + Vector3.up * 0.5f,
+                pos - Vector3.up * 0.5f,
+                0.5f, ~(1 << 2)).Length ==0 )
+        {
+            transform.position = pos;
+            return true;
+        }
+        return false;
+    }
+}
