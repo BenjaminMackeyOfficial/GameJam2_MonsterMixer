@@ -6,13 +6,17 @@ public class Pickup : MonoBehaviour, Iinteractable
 {
     [SerializeField] Color hoverColor;
     [SerializeField] string hoverText;
-    public void Click()
+    public void Click(GameObject heldItem)
     {
         
     }
-    public void HighlightHover()
+    public void Hover()
     {
 
+    }
+    public void UnHover()
+    {
+        
     }
 
     void Start()
@@ -28,7 +32,5 @@ public class Pickup : MonoBehaviour, Iinteractable
             Outline outline = this.GetComponent<Outline>();
             outline.effectColor = hoverColor;
         }
-        
-
     }
 }

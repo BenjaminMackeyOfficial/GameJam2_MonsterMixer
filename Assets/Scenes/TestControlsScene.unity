@@ -323,6 +323,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6333232247350974857, guid: d2ce00da3ae5db243936870505244191, type: 3}
       insertIndex: -1
       addedObject: {fileID: 186100513}
+    - targetCorrespondingSourceObject: {fileID: 6333232247350974857, guid: d2ce00da3ae5db243936870505244191, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 186100516}
   m_SourcePrefab: {fileID: 100100000, guid: d2ce00da3ae5db243936870505244191, type: 3}
 --- !u!1 &115956895
 GameObject:
@@ -407,12 +410,26 @@ MonoBehaviour:
   pitchLookSensitivity: 20
   maxLookPitch: 80
   maxSlopeAngle: 10
-  walkSpeed: 10
+  walkSpeed: 3
   jumpHeight: 0
   downForceWhileInAir: 10
   Bouncyness: 5
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   objs: []
+--- !u!114 &186100516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186100512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361889644247d374690a4108a508fcb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  raycastFrom: {fileID: 557419503}
+  maxHoverDist: 0
 --- !u!1 &238683663
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +555,7 @@ GameObject:
   - component: {fileID: 274743239}
   - component: {fileID: 274743238}
   - component: {fileID: 274743242}
+  - component: {fileID: 274743243}
   m_Layer: 0
   m_Name: TestPickup
   m_TagString: Untagged
@@ -652,6 +670,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
   hoverColor: {r: 0.5359212, g: 1, b: 0, a: 0}
   hoverText: Test Cube
+--- !u!114 &274743243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274743237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &284801223
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +798,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284801223}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &557419503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7542131904079022962, guid: d2ce00da3ae5db243936870505244191, type: 3}
+  m_PrefabInstance: {fileID: 85233966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738780850
 GameObject:
   m_ObjectHideFlags: 0

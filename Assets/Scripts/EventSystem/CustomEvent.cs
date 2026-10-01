@@ -46,7 +46,7 @@ public class CustomEvent
 
 public abstract class Data
 {
-    
+
 }
 
 public class GameObjData : Data
@@ -55,6 +55,10 @@ public class GameObjData : Data
     {
         obj = gameObject;
     }
+    public GameObjData()
+    {
+        obj = null;
+    }
     public GameObject obj;
 }
 public class Vector2Data : Data
@@ -62,6 +66,10 @@ public class Vector2Data : Data
     public Vector2Data(Vector2 vector2)
     {
         vec2 = vector2;
+    }
+    public Vector2Data()
+    {
+        vec2 = Vector2.zero;
     }
     public Vector2 vec2;
 }
