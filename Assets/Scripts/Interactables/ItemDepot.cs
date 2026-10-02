@@ -3,6 +3,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public enum DepotType
 {
@@ -31,8 +32,29 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     private float proscessingRemaining;
     //
 
-    public void Click(GameObject heldItem)
+    //events
+    private CustomEvent giveToLeftHand;
+    private CustomEvent giveToRightHand;
+    //
+
+    public void Click(GameObject heldItem, bool leftHand) //true for left, false for right
     {
+        string eventName = "GiveToRightHand";
+        if(leftHand) eventName = "GiveToLeftHand";
+        if(CanTake(heldItem.GetComponent<ItemTags>()))
+        {
+            GameObject returnObj = TakeItem(heldItem);
+            EventBus.RequestEvent(eventName, true).AddData(new GameObjData(returnObj));
+            EventBus.RequestEvent(eventName, true).Invoke();
+            return;
+        }
+        if(CanGive())
+        {
+            GameObject returnObj = GiveItem();
+            EventBus.RequestEvent(eventName, true).AddData(new GameObjData(returnObj));
+            EventBus.RequestEvent(eventName, true).Invoke();
+            return;
+        }
         
     }
     public void Hover()
@@ -44,7 +66,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         
     }
 
-    public bool CanGive(ItemTags tags)
+    public bool CanTake(ItemTags tags)
     {
         if(hasItem && proscessing) return false; //busy proscessing something already
 
@@ -86,6 +108,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
             {
                 heldItemTags.AddTag(tag);
             }
+            Destroy(item);
             return null;
         }
         if(type == DepotType.Alter || type == DepotType.Recieve)

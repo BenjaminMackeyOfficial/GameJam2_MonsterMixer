@@ -39,6 +39,11 @@ public class Interactor : MonoBehaviour
 
         GameObjData dat2 = new GameObjData();
         leftHandClick.AddData(dat2);
+
+        //
+
+        EventBus.RequestEvent("GiveToLeftHand", true).ping += LeftHandRecieve;
+        EventBus.RequestEvent("GiveToRightHand", true).ping += RightHandRecieve;
     }
 
     void Update()
@@ -60,16 +65,28 @@ public class Interactor : MonoBehaviour
         }
         
     }
+    private void LeftHandRecieve()
+    {
+
+        holdingInLeftHand = EventBus.RequestEvent("GiveToLeftHand", true).GetData<GameObjData>().obj;
+        EventBus.RequestEvent("UpdateHands", true).Invoke();
+
+    }
+    private void RightHandRecieve()
+    {
+        holdingInRightHand = EventBus.RequestEvent("GiveToRightHand", true).GetData<GameObjData>().obj;
+        EventBus.RequestEvent("UpdateHands", true).Invoke();
+    }
 
     public void LeftClick()
     {
         if(prevInteract == null) return;
-        prevInteract.Click(holdingInLeftHand);
+        prevInteract.Click(holdingInLeftHand, true);
     }
 
     public void RightClick()
     {
         if(prevInteract == null) return;
-        prevInteract.Click(holdingInRightHand);
+        prevInteract.Click(holdingInRightHand, false);
     }
 }

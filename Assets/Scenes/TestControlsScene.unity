@@ -336,6 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115956896}
+  - component: {fileID: 115956897}
   m_Layer: 10
   m_Name: Hands
   m_TagString: Untagged
@@ -360,6 +361,18 @@ Transform:
   - {fileID: 284801224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115956897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115956895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a117803106ccd8d4ab4490348b9524dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &186100512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6333232247350974857, guid: d2ce00da3ae5db243936870505244191, type: 3}
@@ -670,6 +683,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
   hoverColor: {r: 0.5359212, g: 1, b: 0, a: 0}
   hoverText: Test Cube
+  type: 0
+  enforceWrongTags: 0
+  hasInfinate: 0
+  wantedTags: []
+  giveTags: []
 --- !u!114 &274743243
 MonoBehaviour:
   m_ObjectHideFlags: 0

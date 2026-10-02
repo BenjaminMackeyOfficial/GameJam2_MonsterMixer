@@ -1,8 +1,8 @@
-using System;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
 public class Tag
 {
     public Tag(string name, bool canHaveMulti)
