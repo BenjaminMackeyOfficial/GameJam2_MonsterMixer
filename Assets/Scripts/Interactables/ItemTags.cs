@@ -16,8 +16,8 @@ public class Tag
 }
 public class ItemTags : MonoBehaviour
 {
-    private List<Tag> _tags;
-    
+    [SerializeField] List<Tag> _tags;
+
     public Tag HasTag(string name)
     {
         foreach (Tag tag in _tags)

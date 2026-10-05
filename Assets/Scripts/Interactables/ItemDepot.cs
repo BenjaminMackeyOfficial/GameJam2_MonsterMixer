@@ -1,9 +1,8 @@
 using System;
-using Unity.Mathematics;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
 
 public enum DepotType
 {
@@ -23,32 +22,29 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     [SerializeField] Tag[] wantedTags;
     [SerializeField] Tag[] giveTags;
 
+    [Header("This is where the item is visually shown")]
+    [SerializeField] GameObject itemDisplayPlatform;
+
     //stuff about things that may take time
-    private bool hasItem;
     private ItemTags heldItemTags;
-    private GameObject heldObject;
-
-    private bool proscessing;
+    [SerializeField] GameObject heldObject;
     private float proscessingRemaining;
-    //
-
-    //events
-    private CustomEvent giveToLeftHand;
-    private CustomEvent giveToRightHand;
+    [SerializeField] float timeToProscess;
     //
 
     public void Click(GameObject heldItem, bool leftHand) //true for left, false for right
     {
         string eventName = "GiveToRightHand";
-        if(leftHand) eventName = "GiveToLeftHand";
-        if(CanTake(heldItem.GetComponent<ItemTags>()))
+        if(leftHand) eventName = "GiveToLeftHand";//event stuff
+
+        if(heldItem != null && CanTake(heldItem.GetComponent<ItemTags>()))
         {
             GameObject returnObj = TakeItem(heldItem);
             EventBus.RequestEvent(eventName, true).AddData(new GameObjData(returnObj));
             EventBus.RequestEvent(eventName, true).Invoke();
             return;
         }
-        if(CanGive())
+        if(CanGive(heldItem))
         {
             GameObject returnObj = GiveItem();
             EventBus.RequestEvent(eventName, true).AddData(new GameObjData(returnObj));
@@ -59,18 +55,18 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
     public void Hover()
     {
-
+        Debug.Log("aa");
     }
     public void UnHover()
     {
-        
+        Debug.Log("bb");
     }
 
     public bool CanTake(ItemTags tags)
     {
-        if(hasItem && proscessing) return false; //busy proscessing something already
+        if(heldObject != null && proscessingRemaining > 0) return false; //busy proscessing something already
 
-        if(hasItem && type == DepotType.Mix) return true; //if it
+        if(heldObject != null && type == DepotType.Mix) return true; //if it
 
         if(type == DepotType.Give) return false; //givers cant take items
 
@@ -85,10 +81,11 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
 
     
-    public bool CanGive() // give as in the player recieves
+    public bool CanGive(GameObject itm) // give as in the player recieves
     {
+        if(type == DepotType.Give && itm != null) return false;
         if(type == DepotType.Recieve) return false;
-        if(hasItem && !proscessing) return true;
+        if(heldObject != null && proscessingRemaining  <= 0) return true;
         return false;
     }
 
@@ -96,35 +93,44 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     {
         ItemTags tags = item.GetComponent<ItemTags>();
         if(type == DepotType.Give) return item; //shouldnt happen, but can never be to careful
+
         if(type == DepotType.Mix)
         {
-            if(hasItem == false)
+            if(heldObject == null)
             {
                 heldItemTags = tags;
-                heldObject = item;
-                hasItem = true;   
+                heldObject = item; 
             }
             foreach (Tag tag in tags.GetAllTags())
             {
                 heldItemTags.AddTag(tag);
             }
-            Destroy(item);
+            if(heldObject != item) Destroy(item);
+            PlaceOnPedestal();
             return null;
         }
         if(type == DepotType.Alter || type == DepotType.Recieve)
         {
             GameObject toReturn = null;
-            if(hasItem && type == DepotType.Alter) toReturn = heldItemTags.gameObject;
+            if(heldObject != null && type == DepotType.Alter) toReturn = heldObject;
 
+            heldObject = item;
             heldItemTags = tags;
+            
+            PlaceOnPedestal();
             return toReturn;
         }
+        PlaceOnPedestal();
         return item;
     }
 
     public GameObject GiveItem()
     {
         GameObject giving = heldObject;
+        if(giving == null)
+        {
+            return giving;
+        }
         if(hasInfinate) 
         {
             giving = Instantiate(giving);
@@ -138,6 +144,27 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         }
     }
 
+    private void PlaceOnPedestal()
+    {
+        if(heldObject == null) return;
+        UnityEngine.Vector3 platPos = itemDisplayPlatform.transform.position;
+        heldObject.transform.position = new UnityEngine.Vector3(
+            platPos.x,
+            platPos.y + heldObject.transform.lossyScale.y / 2f, 
+            platPos.z);
+    }
+
+    public void ApplyTags()
+    {
+        if(heldObject == null || proscessingRemaining > 0) return;
+        proscessingRemaining = timeToProscess;
+        foreach (Tag item in giveTags)
+        {
+            heldItemTags.AddTag(item);
+        }
+    }
+
+    
 
     void Start()
     {
@@ -154,9 +181,25 @@ public class ItemDepot : MonoBehaviour, Iinteractable
 
         if(type == DepotType.Give)
         {
-            heldObject = new GameObject();
-            heldItemTags = heldObject.AddComponent<ItemTags>();
+            if(heldObject == null)
+            {
+                heldObject = new GameObject();
+                heldItemTags = heldObject.AddComponent<ItemTags>();
+            }
+            else
+            {
+                heldObject = Instantiate(heldObject);
+                heldObject.name = "testPickup";
+                heldItemTags = heldObject.GetComponent<ItemTags>();
+            }    
         }
-
+        PlaceOnPedestal();
+    }
+    void Update()
+    {
+        if(proscessingRemaining > -1) 
+        {
+            proscessingRemaining -= Time.deltaTime;
+        }
     }
 }

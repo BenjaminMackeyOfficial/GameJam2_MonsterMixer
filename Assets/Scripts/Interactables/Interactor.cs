@@ -23,6 +23,9 @@ public class Interactor : MonoBehaviour
     private PlayerController controller;
     //
 
+    //
+    private Vector3 itemPoolPosition = new Vector3(0,-900,0);
+    //
     void Start()
     {
         //data are whatever the player previously interacted with
@@ -70,23 +73,39 @@ public class Interactor : MonoBehaviour
 
         holdingInLeftHand = EventBus.RequestEvent("GiveToLeftHand", true).GetData<GameObjData>().obj;
         EventBus.RequestEvent("UpdateHands", true).Invoke();
-
+        if(holdingInLeftHand != null) holdingInLeftHand.transform.position = itemPoolPosition; 
     }
     private void RightHandRecieve()
     {
         holdingInRightHand = EventBus.RequestEvent("GiveToRightHand", true).GetData<GameObjData>().obj;
         EventBus.RequestEvent("UpdateHands", true).Invoke();
+        if(holdingInRightHand != null) holdingInRightHand.transform.position = itemPoolPosition;
     }
 
     public void LeftClick()
     {
-        if(prevInteract == null) return;
+        if(prevInteract == null)
+        {
+            EventBus.RequestEvent("LeftClickNoTarget", true).Invoke();
+            return;
+        }
         prevInteract.Click(holdingInLeftHand, true);
     }
-
+    public void LeftUnClick()
+    {
+        EventBus.RequestEvent("LeftClickRelease", true).Invoke();
+    }
     public void RightClick()
     {
-        if(prevInteract == null) return;
+        if(prevInteract == null)
+        {
+            EventBus.RequestEvent("RightClickNoTarget", true).Invoke();
+            return;
+        }
         prevInteract.Click(holdingInRightHand, false);
+    }
+    public void RightUnClick()
+    {
+        EventBus.RequestEvent("RightClickRelease", true).Invoke();
     }
 }

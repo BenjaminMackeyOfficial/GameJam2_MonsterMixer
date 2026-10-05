@@ -73,6 +73,9 @@ public class PlayerController : MonoBehaviour
         inputActions.FindAction("Player/LeftHandInteract").started += _ => interactor.LeftClick();
         inputActions.FindAction("Player/RightHandInteract").started += _ => interactor.RightClick();
 
+        inputActions.FindAction("Player/LeftHandInteract").canceled += _ => interactor.LeftUnClick();
+        inputActions.FindAction("Player/RightHandInteract").canceled += _ => interactor.RightUnClick();
+
         heightFromCent =  Vector3.up * (transform.localScale.y / 4);
 
         //jump.started += Jump;
@@ -160,9 +163,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        prog = math.lerp(prog, targProg, 0.1f);
-        camCamera.fieldOfView = Mathf.Lerp(FOV, zoomInFov, prog);
-
         rotateForLook();
         cam.transform.rotation = lookRot;
     }
