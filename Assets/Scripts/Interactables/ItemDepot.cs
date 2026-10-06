@@ -16,6 +16,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     [SerializeField] Color hoverColor;
     [SerializeField] string hoverText;
     [SerializeField] DepotType type;
+   
 
     [SerializeField] bool enforceWrongTags;//denys taking the item if it doesnt have all the tags
     [SerializeField] bool hasInfinate;
@@ -55,11 +56,11 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
     public void Hover()
     {
-        Debug.Log("aa");
+
     }
     public void UnHover()
     {
-        Debug.Log("bb");
+        
     }
 
     public bool CanTake(ItemTags tags)
@@ -168,17 +169,6 @@ public class ItemDepot : MonoBehaviour, Iinteractable
 
     void Start()
     {
-        if(this.GetComponent<Outline>() == null)
-        {
-            Outline outline = this.AddComponent<Outline>();
-            outline.effectColor = hoverColor;
-        }
-        else
-        {
-            Outline outline = this.GetComponent<Outline>();
-            outline.effectColor = hoverColor;
-        }
-
         if(type == DepotType.Give)
         {
             if(heldObject == null)
