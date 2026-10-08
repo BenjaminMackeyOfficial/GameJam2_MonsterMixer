@@ -13,23 +13,23 @@ public enum DepotType
 }
 public class ItemDepot : MonoBehaviour, Iinteractable
 {
-    [SerializeField] Color hoverColor;
+    [SerializeField] protected Color hoverColor;
     [SerializeField] string hoverText;
-    [SerializeField] DepotType type;
+    [SerializeField] protected DepotType type;
 
-    [SerializeField] bool enforceWrongTags;//denys taking the item if it doesnt have all the tags
-    [SerializeField] bool hasInfinate;
-    [SerializeField] Tag[] wantedTags;
-    [SerializeField] Tag[] giveTags;
+    [SerializeField] protected bool enforceWrongTags;//denys taking the item if it doesnt have all the tags
+    [SerializeField] protected bool hasInfinate;
+    [SerializeField] protected Tag[] wantedTags;
+    [SerializeField] protected Tag[] giveTags;
 
     [Header("This is where the item is visually shown")]
     [SerializeField] GameObject itemDisplayPlatform;
 
     //stuff about things that may take time
-    private ItemTags heldItemTags;
-    [SerializeField] GameObject heldObject;
-    private float proscessingRemaining;
-    [SerializeField] float timeToProscess;
+    protected ItemTags heldItemTags;
+    [SerializeField] protected GameObject heldObject;
+    protected float proscessingRemaining;
+    [SerializeField] protected float timeToProscess;
     //
 
     public void Click(GameObject heldItem, bool leftHand) //true for left, false for right
@@ -89,7 +89,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         return false;
     }
 
-    public GameObject TakeItem(GameObject item) //vampires will extend off this
+    public virtual GameObject TakeItem(GameObject item) //vampires will extend off this
     {
         ItemTags tags = item.GetComponent<ItemTags>();
         if(type == DepotType.Give) return item; //shouldnt happen, but can never be to careful
@@ -144,7 +144,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         }
     }
 
-    private void PlaceOnPedestal()
+    protected void PlaceOnPedestal()
     {
         if(heldObject == null) return;
         UnityEngine.Vector3 platPos = itemDisplayPlatform.transform.position;
@@ -166,7 +166,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
 
     
 
-    void Start()
+    protected virtual void Start()
     {
         if(this.GetComponent<Outline>() == null)
         {
