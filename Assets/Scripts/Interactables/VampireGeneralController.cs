@@ -13,7 +13,6 @@ public class VampireGeneralController : MonoBehaviour
     public float waitTime = 0;
 
     public Vector3 ReturnPoint;
-    public bool ableToGive = false; // <---- this is if the player already has the wincon
     
     [Header("How quickly score goes down based on wait time")]
 

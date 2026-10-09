@@ -9,7 +9,7 @@ public class VampireScorer : ItemDepot
         TryGetComponent<VampireGeneralController>(out controller);
         if(controller == null) Destroy(this);
     }
-    private bool Score(ItemTags obj)
+    private void Score(ItemTags obj)
     {
         float score = 100;
         bool perfect = true;
@@ -46,23 +46,17 @@ public class VampireScorer : ItemDepot
         }
 
         if(perfect != true) score *= 0.7f; //cuts score if you didnt get a perfect score
-        
+
         controller.Scored(score, perfect);
-        return perfect;
     }
     public override GameObject TakeItem(GameObject item) //vampires will extend off this
     {
+        type = DepotType.Recieve;
         ItemTags tags = item.GetComponent<ItemTags>();
 
-        GameObject toReturn = null;
-        if(Score(tags))
-        {
-            toReturn = heldObject;
-            heldObject = null;
-            heldItemTags = null;
-        }
+        Score(tags);
         
         Destroy(item);
-        return toReturn;
+        return null;
     }
 }
