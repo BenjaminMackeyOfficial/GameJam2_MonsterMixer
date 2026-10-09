@@ -122,7 +122,7 @@ MonoBehaviour:
     _count: 0
   giveTags: []
   itemDisplayPlatform: {fileID: 0}
-  heldObject: {fileID: 0}
+  heldObject: {fileID: 6786268794618971684, guid: 45cc4f0babcaa3c4d867dd900ffb51ec, type: 3}
   timeToProscess: 0
 --- !u!114 &1946134105015761183
 MonoBehaviour:

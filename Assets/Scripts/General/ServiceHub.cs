@@ -12,6 +12,7 @@ public class ServiceHub : MonoBehaviour
     public VampireManager vampireManager;
     public GameState gameState;
     public GameObject player;
+    public RoundProgressionManager roundProgressionManager;
     //
 
     void Awake()
@@ -27,6 +28,7 @@ public class ServiceHub : MonoBehaviour
 
         vampireManager.Initialize();
         gameState.Initialize();
+        
 
         EventBus.RequestEvent("RequestPlayMode", true).Invoke();
     }
