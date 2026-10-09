@@ -7,13 +7,13 @@ public class VampireScorer : ItemDepot
     {
         base.Start();
         TryGetComponent<VampireGeneralController>(out controller);
-        if(controller == null) Destroy(this);
+        if (controller == null) Destroy(this);
     }
     private void Score(ItemTags obj)
     {
         float score = 100;
         bool perfect = true;
-        if(controller.waitTime < controller.maxWaitTimeToGetAchievment)
+        if (controller.waitTime < controller.maxWaitTimeToGetAchievment)
         {
             score += controller.maxWaitTimeToGetAchievment - controller.waitTime;
         }
@@ -25,7 +25,7 @@ public class VampireScorer : ItemDepot
 
         foreach (Tag item in wantedTags)
         {
-            if(obj.HasTag(item._name) == null) //checking all the tags in the wanted tag list
+            if (obj.HasTag(item._name) == null) //checking all the tags in the wanted tag list
             {
                 perfect = false;
                 score -= 5;
@@ -36,16 +36,16 @@ public class VampireScorer : ItemDepot
             bool match = false;
             foreach (Tag check in wantedTags)
             {
-                if(check._name == item._name) match = true;
+                if (check._name == item._name) match = true;
             }
-            if(match == false)
+            if (match == false)
             {
                 score -= 5;
                 perfect = false;
             }
         }
 
-        if(perfect != true) score *= 0.7f; //cuts score if you didnt get a perfect score
+        if (perfect != true) score *= 0.7f; //cuts score if you didnt get a perfect score
 
         controller.Scored(score, perfect);
     }
@@ -55,7 +55,7 @@ public class VampireScorer : ItemDepot
         ItemTags tags = item.GetComponent<ItemTags>();
 
         Score(tags);
-        
+
         Destroy(item);
         return null;
     }
