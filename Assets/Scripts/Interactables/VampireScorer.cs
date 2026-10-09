@@ -54,13 +54,9 @@ public class VampireScorer : ItemDepot
         type = DepotType.Recieve;
         ItemTags tags = item.GetComponent<ItemTags>();
 
-        if(type == DepotType.Give) return item; //shouldnt happen, but can never be to careful
+        Score(tags);
         
-        
-        heldObject = item;
-        heldItemTags = tags;
-        
-        PlaceOnPedestal();
+        Destroy(item);
         return null;
     }
 }

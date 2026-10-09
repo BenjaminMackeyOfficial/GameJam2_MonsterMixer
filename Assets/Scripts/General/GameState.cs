@@ -1,8 +1,10 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+    [Serializable]
     public enum GameplayState
     {
         Menu, 

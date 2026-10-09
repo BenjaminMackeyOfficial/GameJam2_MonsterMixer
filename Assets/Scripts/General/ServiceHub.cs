@@ -9,8 +9,9 @@ public class ServiceHub : MonoBehaviour
     private static ServiceHub _instance;
 
     //referances
-    [SerializeField] VampireManager vampireManager;
-    [SerializeField] GameState gameState;
+    public VampireManager vampireManager;
+    public GameState gameState;
+    public GameObject player;
     //
 
     void Awake()
@@ -23,5 +24,10 @@ public class ServiceHub : MonoBehaviour
         }
 
         DontDestroyOnLoad(_instance);
+
+        vampireManager.Initialize();
+        gameState.Initialize();
+
+        EventBus.RequestEvent("RequestPlayMode", true).Invoke();
     }
 }
