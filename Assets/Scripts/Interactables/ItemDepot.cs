@@ -55,11 +55,11 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
     public void Hover()
     {
-        Debug.Log("aa");
+        
     }
     public void UnHover()
     {
-        Debug.Log("bb");
+
     }
 
     public bool CanTake(ItemTags tags)
