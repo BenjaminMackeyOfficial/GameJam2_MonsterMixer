@@ -5,6 +5,27 @@ using UnityEngine;
 [System.Serializable]
 public class Tag
 {
+    public static bool ListIncludes(List<Tag> list, Tag tag)
+    {
+        foreach (Tag item in list)
+        {
+            if(item._name == tag._name) return true;
+        }
+        return false;
+    }
+    public static bool ArrayIncludes(Tag[] array, Tag tag)
+    {
+        foreach (Tag item in array)
+        {
+            if(item._name == tag._name) return true;
+        }
+        return false;
+    }
+    public static bool CompareTags(Tag tag1, Tag tag2)
+    {
+        if(tag1._name == tag2._name) return true;
+        return false;
+    }
     public Tag(string name, bool canHaveMulti)
     {
         _name = name;
@@ -62,4 +83,5 @@ public class ItemTags : MonoBehaviour
     {
         
     }
+
 }

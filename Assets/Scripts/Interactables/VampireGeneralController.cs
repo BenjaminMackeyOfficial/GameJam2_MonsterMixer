@@ -30,6 +30,7 @@ public class VampireGeneralController : MonoBehaviour
         Debug.Log("Score: " + givenScore + " | perfect: " + isPerfect);
         barPosition.occupied = false;
         state = VampireState.Exiting;
+        ServiceHub.Instance.tips.AddTipAmount(givenScore);
         WalkTo(ReturnPoint);
     }
 

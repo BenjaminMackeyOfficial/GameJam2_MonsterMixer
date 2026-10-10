@@ -74,5 +74,17 @@ public class Vector2Data : Data
     }
     public Vector2 vec2;
 }
+public class IntData : Data
+{
+    public IntData(int dat)
+    {
+        intVal = dat;
+    }
+    public IntData()
+    {
+        intVal = 0;
+    }
+    public int intVal;
+}
 
 //feel free to extend off data for anything

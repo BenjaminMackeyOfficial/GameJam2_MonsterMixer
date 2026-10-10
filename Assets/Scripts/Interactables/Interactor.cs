@@ -63,7 +63,6 @@ public class Interactor : MonoBehaviour
 
             prevHovered = hit.collider.gameObject;
             prevInteract = prevHovered.GetComponent<Iinteractable>();
-
             prevInteract.Hover();
         }
         

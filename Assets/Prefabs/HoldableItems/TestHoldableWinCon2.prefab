@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7521681065157173103}
   - component: {fileID: 4493712094840642344}
   m_Layer: 0
-  m_Name: TestHoldableWinCon
+  m_Name: TestHoldableWinCon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTags
   _tags:
-  - _name: TestVampire
+  - _name: TestVampire2
     _canHaveMultiple: 0
     _count: 1

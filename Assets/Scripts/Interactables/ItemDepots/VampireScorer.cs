@@ -7,7 +7,10 @@ public class VampireScorer : ItemDepot
     {
         base.Start();
         TryGetComponent<VampireGeneralController>(out controller);
-        if(controller == null) Destroy(this);
+        if(controller == null) 
+        {
+            Destroy(this);
+        }
     }
     private bool Score(ItemTags obj)
     {
@@ -50,16 +53,28 @@ public class VampireScorer : ItemDepot
         controller.Scored(score, perfect);
         return perfect;
     }
-    public override GameObject TakeItem(GameObject item) //vampires will extend off this
+    public override GameObject TakeItem(GameObject item)
     {
         ItemTags tags = item.GetComponent<ItemTags>();
 
         GameObject toReturn = null;
-        if(Score(tags))
+
+        bool perf = Score(tags);
+
+        if(heldObject == null) return toReturn;
+
+        bool include = Tag.ListIncludes(ServiceHub.Instance.roundProgressionManager.haveRecieved, heldItemTags.GetAllTags()[0]);
+        if(perf && !include)
         {
             toReturn = heldObject;
             heldObject = null;
             heldItemTags = null;
+        }
+        else if(perf && include) // gives the player a money bonus for perfecting a vamp whos plush they already have
+        {
+            IntData dat = new IntData(50);
+            EventBus.RequestEvent("BonusTip", true).AddData(dat);
+            EventBus.RequestEvent("BonusTip", true).Invoke();
         }
         
         Destroy(item);

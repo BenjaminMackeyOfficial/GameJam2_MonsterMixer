@@ -13,6 +13,7 @@ public class ServiceHub : MonoBehaviour
     public GameState gameState;
     public GameObject player;
     public RoundProgressionManager roundProgressionManager;
+    public TipsScoring tips;
     //
 
     void Awake()
