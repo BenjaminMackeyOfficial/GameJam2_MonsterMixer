@@ -18,6 +18,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     [SerializeField] protected DepotType type;
 
     [SerializeField] protected bool enforceWrongTags;//denys taking the item if it doesnt have all the tags
+    [SerializeField] protected bool enforceAllTags;
     [SerializeField] protected bool hasInfinate;
     [SerializeField] protected Tag[] wantedTags;
     [SerializeField] protected Tag[] giveTags;
@@ -55,7 +56,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
     public void Hover()
     {
-        
+        //Debug.Log(gameObject.name);
     }
     public void UnHover()
     {
@@ -75,7 +76,10 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         foreach (Tag tag in wantedTags)
         {
             Tag foundTag = tags.HasTag(tag._name);
-            if(foundTag == null) return false; //missing a tag
+            if(foundTag == null && enforceAllTags == true) 
+            {
+                return false; //missing a tag
+            }
         }
         return true; //makes it through checking against all required tags
     }
@@ -146,7 +150,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
 
     protected void PlaceOnPedestal()
     {
-        if(heldObject == null) return;
+        if(heldObject == null || itemDisplayPlatform == null) return;
         UnityEngine.Vector3 platPos = itemDisplayPlatform.transform.position;
         heldObject.transform.position = new UnityEngine.Vector3(
             platPos.x,
@@ -179,21 +183,21 @@ public class ItemDepot : MonoBehaviour, Iinteractable
             outline.effectColor = hoverColor;
         }
 
-        if(type == DepotType.Give)
+        if(type == DepotType.Give && heldObject == null)
         {
-            if(heldObject == null)
-            {
-                heldObject = new GameObject();
-                heldItemTags = heldObject.AddComponent<ItemTags>();
-            }
-            else
-            {
-                heldObject = Instantiate(heldObject);
-                heldObject.name = "testPickup";
-                heldItemTags = heldObject.GetComponent<ItemTags>();
-            }    
+            
+            heldObject = new GameObject();
+            heldItemTags = heldObject.AddComponent<ItemTags>();   
+        }
+
+        if(heldObject != null)
+        {
+            heldObject = Instantiate(heldObject);
+            heldObject.name = "pickup";
+            heldItemTags = heldObject.GetComponent<ItemTags>();
         }
         PlaceOnPedestal();
+        
     }
     void Update()
     {

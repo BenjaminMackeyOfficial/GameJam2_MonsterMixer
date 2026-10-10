@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4697145728498073692}
   - component: {fileID: 8472838523147106201}
   m_Layer: 0
-  m_Name: Vampire
+  m_Name: Vampire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   hoverText: 
   type: 1
   enforceWrongTags: 0
+  enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
   - _name: Lemon
@@ -123,7 +124,7 @@ MonoBehaviour:
     _count: 0
   giveTags: []
   itemDisplayPlatform: {fileID: 0}
-  heldObject: {fileID: 6786268794618971684, guid: 45cc4f0babcaa3c4d867dd900ffb51ec, type: 3}
+  heldObject: {fileID: 6786268794618971684, guid: 4a61adbe394c07a45b22fb2bdf506054, type: 3}
   timeToProscess: 0
 --- !u!114 &1946134105015761183
 MonoBehaviour:
