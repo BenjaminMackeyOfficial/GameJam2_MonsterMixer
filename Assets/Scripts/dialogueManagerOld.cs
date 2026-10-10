@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManagerOld : MonoBehaviour
 {
 
     [SerializeField] private HudUIManager uiManager;
-    [SerializeField] private PlayerController playerMovement;
     
     public bool isDialogue = false;
     private Queue<string> dialogueQueue;
 
     private void Awake()
     {
-  
         dialogueQueue = new Queue<string>();
     }
 
@@ -21,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(string[] sentences)
     {
         isDialogue = true;
-      
 
         uiManager.ShowDialoguePanel();
 
