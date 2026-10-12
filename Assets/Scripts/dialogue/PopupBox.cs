@@ -3,16 +3,17 @@ using UnityEngine;
 public abstract class PopupBox : MonoBehaviour
 {
     public GameObject attatchedObj; //what object its placing itself above
-    public GameObject selfCanvasPlane; //the plane acting as a canvas
-}
-
-
-public class DialougeBox : PopupBox
-{
+    public Canvas selfCanvasPlane; //the plane acting as a canvas
     
+    public virtual void ShowCanvas(string includes)
+    {
+        
+    }
+
+    public virtual void HideCanvas()
+    {
+        
+    }
 }
 
-public class NumberPopup : PopupBox
-{
-    
-}
+

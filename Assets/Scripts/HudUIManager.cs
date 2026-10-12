@@ -142,7 +142,6 @@ public class HudUIManager : MonoBehaviour
             yield return new WaitForSeconds(typewriterSpeed);
         }
         isTypewriterActive = false;
-
     }
 
     public void SkipTypewriter()

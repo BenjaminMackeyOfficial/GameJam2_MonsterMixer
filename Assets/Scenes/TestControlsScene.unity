@@ -2420,6 +2420,7 @@ MonoBehaviour:
   gameState: {fileID: 172438948}
   player: {fileID: 186100512}
   roundProgressionManager: {fileID: 858000423}
+  popupManager: {fileID: 1040387119}
   tips: {fileID: 2085328898}
 --- !u!4 &843833522
 Transform:
@@ -2438,6 +2439,7 @@ Transform:
   - {fileID: 172438947}
   - {fileID: 858000424}
   - {fileID: 2085328897}
+  - {fileID: 1040387120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858000422
@@ -2597,6 +2599,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 472287885}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1040387118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040387120}
+  - component: {fileID: 1040387119}
+  m_Layer: 0
+  m_Name: PopupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1040387119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040387118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f5c24edf28d884fbe0503d64dd6da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupManager
+  popupDialougePrefab: {fileID: 812998686853435693, guid: 9774773ae02acf74f803e104a54e9f0b, type: 3}
+  popupNumberLabelPrefab: {fileID: 0}
+--- !u!4 &1040387120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040387118}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.35857, y: 0, z: 14.38689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843833522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1052483265
 GameObject:
@@ -3466,7 +3514,7 @@ Transform:
   m_GameObject: {fileID: 1332585895}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -6.249, y: 3, z: -3.608}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

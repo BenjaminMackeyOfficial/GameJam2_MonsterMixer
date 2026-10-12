@@ -44,7 +44,7 @@ public class VampireGeneralController : MonoBehaviour
         if(state == VampireState.Exiting) return; //shouldnt be called but hey
         state = VampireState.Waiting;
         //any ui effects or ding sounds, perhaps an event
-
+        ServiceHub.Instance.popupManager.CreateDialouge("Hello i am at the bar", gameObject);
         //
     }
     private void UpdateWaitTime()
