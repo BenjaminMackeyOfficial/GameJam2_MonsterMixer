@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum VampireState
 {
@@ -25,9 +26,33 @@ public class VampireGeneralController : MonoBehaviour
     public VampireState state;
     public BarPosition barPosition;
 
+    [Header("DIALOUGE OPTIONS")]
+
+    [SerializeField] public string[] DialougeArivedAtBar;
+    [SerializeField] public string[] DialougeUnhappyMidDrinkMake;
+    [SerializeField] public string[] DialougePleasedMidDrinkMake;
+    [SerializeField] public string[] DialougeLeavingBarUpset;
+    [SerializeField] public string[] DialougeLeavingBarHappy;
+    [SerializeField] public string[] DialougeLeavingBarPerfect;
+
+    void Start()
+    {
+        if(DialougeArivedAtBar == null || DialougeArivedAtBar.Length == 0) DialougeArivedAtBar = new string[] { "..." };
+        if(DialougeUnhappyMidDrinkMake == null || DialougeUnhappyMidDrinkMake.Length == 0) DialougeUnhappyMidDrinkMake = new string[] { "..." };
+        if(DialougePleasedMidDrinkMake == null || DialougePleasedMidDrinkMake.Length == 0) DialougePleasedMidDrinkMake = new string[] { "..." };
+        if(DialougeLeavingBarUpset == null || DialougeLeavingBarUpset.Length == 0) DialougeLeavingBarUpset = new string[] { "..." };
+        if(DialougeLeavingBarHappy == null || DialougeLeavingBarHappy.Length == 0) DialougeLeavingBarHappy = new string[] { "..." };
+        if(DialougeLeavingBarPerfect == null || DialougeLeavingBarPerfect.Length == 0) DialougeLeavingBarPerfect = new string[] { "..." };
+    }
+
     public void Scored(float givenScore, bool isPerfect)
     {
         Debug.Log("Score: " + givenScore + " | perfect: " + isPerfect);
+
+        if(isPerfect) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarPerfect.Random(), gameObject);
+        else if(givenScore > 70) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarHappy.Random(), gameObject);
+        else ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarUpset.Random(), gameObject);
+
         barPosition.occupied = false;
         state = VampireState.Exiting;
         ServiceHub.Instance.tips.AddTipAmount(givenScore);
@@ -43,8 +68,9 @@ public class VampireGeneralController : MonoBehaviour
     {
         if(state == VampireState.Exiting) return; //shouldnt be called but hey
         state = VampireState.Waiting;
+
         //any ui effects or ding sounds, perhaps an event
-        ServiceHub.Instance.popupManager.CreateDialouge("Hello i am at the bar", gameObject);
+        if(DialougeArivedAtBar != null) ServiceHub.Instance.popupManager.CreateDialouge(DialougeArivedAtBar.Random(), gameObject);
         //
     }
     private void UpdateWaitTime()

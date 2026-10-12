@@ -29,11 +29,11 @@ public class RoundProgressionManager : MonoBehaviour
     {
         if(haveRecieved.Count > countSinceLastTime)
         {
-            Debug.Log("Hey, yeah okay, this'll work..");
+            ServiceHub.Instance.popupManager.CreateDialouge("Hey, yeah okay, this'll work..", gameObject);
         }
         else
         {
-            Debug.Log("Nope, i dont want whatever that is...");
+            ServiceHub.Instance.popupManager.CreateDialouge("Nope, i dont want whatever that is...", gameObject);
         }
         countSinceLastTime = haveRecieved.Count;
     }
