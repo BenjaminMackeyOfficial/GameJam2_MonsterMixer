@@ -86,5 +86,18 @@ public class IntData : Data
     }
     public int intVal;
 }
+public class TagData : Data
+{
+    public TagData(Tag dat)
+    {
+        tagVal = dat;
+    }
+    public TagData()
+    {
+        tagVal = null;
+    }
+
+    public Tag tagVal;
+}
 
 //feel free to extend off data for anything

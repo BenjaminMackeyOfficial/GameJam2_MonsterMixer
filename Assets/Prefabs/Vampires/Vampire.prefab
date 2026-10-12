@@ -110,6 +110,7 @@ MonoBehaviour:
   hoverText: 
   type: 1
   enforceWrongTags: 0
+  enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
   - _name: Lemon
@@ -143,6 +144,20 @@ MonoBehaviour:
   patienceLevel: 5
   maxWaitTimeToGetAchievment: 10
   state: 0
+  DialougeArivedAtBar:
+  - Hello
+  - Greetings!
+  DialougeUnhappyMidDrinkMake:
+  - That looks like ASS
+  DialougePleasedMidDrinkMake:
+  - That look GOOD
+  DialougeLeavingBarUpset:
+  - That was NOT what i ordered!
+  DialougeLeavingBarHappy:
+  - That was pretty good
+  DialougeLeavingBarPerfect:
+  - that was PERFECT!
+  - Couldnt have made it better!
 --- !u!114 &-4697145728498073692
 MonoBehaviour:
   m_ObjectHideFlags: 0

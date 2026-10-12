@@ -13,6 +13,7 @@ public class ServiceHub : MonoBehaviour
     public GameState gameState;
     public GameObject player;
     public RoundProgressionManager roundProgressionManager;
+    public PopupManager popupManager;
     public TipsScoring tips;
     //
 
@@ -30,7 +31,6 @@ public class ServiceHub : MonoBehaviour
         vampireManager.Initialize();
         gameState.Initialize();
         
-
         EventBus.RequestEvent("RequestPlayMode", true).Invoke();
     }
 }

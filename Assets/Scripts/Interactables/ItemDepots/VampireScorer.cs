@@ -11,6 +11,8 @@ public class VampireScorer : ItemDepot
         {
             Destroy(this);
         }
+
+        EventBus.RequestEvent("DrinkGainedTag", true).ping += CommentOnDrink;
     }
     private bool Score(ItemTags obj)
     {
@@ -79,5 +81,16 @@ public class VampireScorer : ItemDepot
         
         Destroy(item);
         return toReturn;
+    }
+    private void CommentOnDrink()
+    {
+        if(Tag.ArrayIncludes(wantedTags, EventBus.RequestEvent("DrinkGainedTag", true).GetData<TagData>().tagVal))
+        {
+            ServiceHub.Instance.popupManager.CreateDialouge(controller.DialougePleasedMidDrinkMake.Random(), gameObject);
+        }
+        else if(UnityEngine.Random.Range(1,10) == 9)
+        {
+            ServiceHub.Instance.popupManager.CreateDialouge(controller.DialougeUnhappyMidDrinkMake.Random(), gameObject);
+        }
     }
 }
