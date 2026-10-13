@@ -10,6 +10,8 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
     [SerializeField] GameObject rightHand;
     [SerializeField] Image LhandImg;
     [SerializeField] Image RhandImg;
+    [SerializeField] GameObject inspectUiTargetRight;
+    [SerializeField] GameObject inspectUiTargetLeft;
 
     private SpriteRenderer LHandRenderer;
     private SpriteRenderer RhandRenderer;
@@ -119,7 +121,11 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
         RhandTargPos = new Vector3(RhandBasePos.x, RhandBasePos.y + 0.3f, RhandBasePos.z - 0.1f);
         EventBus.RequestEvent("CameraZoom1", true).Invoke();
         EventBus.RequestEvent("HandsCameraZoom1", true).Invoke();
-        Debug.Log(TagToStringBuilder(holdingInRightHand.GetComponent<ItemTags>().GetAllTags()));
+
+        EventBus.RequestEvent("CancelRightHandInspectDialouge", true).Invoke(); //TEMP DO NOT DO THIS EVER THIS IS LAST MINUTE FIXES
+
+        string toSay = "/I Okay.. this is: " + TagToStringBuilder(holdingInRightHand.GetComponent<ItemTags>().GetAllTags());
+        ServiceHub.Instance.popupManager.CreateDialouge(toSay, inspectUiTargetRight, true);
     }
 
     private void InspectLeftHand()
@@ -130,7 +136,10 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
         LHandTargPos = new Vector3(LhandBasePos.x, LhandBasePos.y + 0.3f, LhandBasePos.z + 0.1f);
         EventBus.RequestEvent("CameraZoom1", true).Invoke();
         EventBus.RequestEvent("HandsCameraZoom1", true).Invoke();
-        Debug.Log(TagToStringBuilder(holdingInLeftHand.GetComponent<ItemTags>().GetAllTags()));
+
+        string toSay = "/I Okay.. this is: " + TagToStringBuilder(holdingInLeftHand.GetComponent<ItemTags>().GetAllTags());
+        ServiceHub.Instance.popupManager.CreateDialouge(toSay, inspectUiTargetLeft, true);
+ 
     }
     private void ResetInspect()
     {
@@ -141,6 +150,9 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
 
         inspectingLeft = false; 
         inspectingRight = false;
+
+        EventBus.RequestEvent("CancelLeftHandInspectDialouge", true).Invoke();//TEMP DO NOT DO THIS EVER THIS IS LAST MINUTE FIXES
+        EventBus.RequestEvent("CancelRightHandInspectDialouge", true).Invoke(); //TEMP DO NOT DO THIS EVER THIS IS LAST MINUTE FIXES
     }
 
     private string TagToStringBuilder(Tag[] tags)//temp

@@ -87,7 +87,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2843058590515555113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +120,11 @@ MonoBehaviour:
   attatchedObj: {fileID: 0}
   selfCanvasPlane: {fileID: 0}
   text: {fileID: 7636352873952180497}
-  slowDownMult: 5
-  typerwriterSpeed: 0.1
+  slowDownMult: 10
+  typerwriterSpeed: 0.03
   slowCharachters: 2e002c00
   skipCharachters: 20002700
+  generalScale: 1
 --- !u!114 &3277856081881699230
 MonoBehaviour:
   m_ObjectHideFlags: 0

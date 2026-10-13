@@ -34,6 +34,22 @@ public class PopupManager : MonoBehaviour
         
     }
 
+    public void CreateDialouge(string text, GameObject targObj, bool forceHandsCamera)
+    {
+        PopupDialouge box = HasMatch<PopupDialouge>(targObj);
+        if (box == null)
+        {
+            GameObject canvObj = Instantiate(popupDialougePrefab);
+            box = canvObj.GetComponent<PopupDialouge>();
+
+            box.Initialize(targObj);
+            popupBoxes.Add(box);
+        }
+        box.ShowCanvas(text, forceHandsCamera);
+
+    }
+
+
     public void ShowText(int text, GameObject targObj)
     {
        
