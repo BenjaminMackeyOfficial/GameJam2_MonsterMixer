@@ -15,6 +15,7 @@ public class ServiceHub : MonoBehaviour
     public RoundProgressionManager roundProgressionManager;
     public PopupManager popupManager;
     public TipsScoring tips;
+    public CameraDataHolder cameras;
     //
 
     void Awake()

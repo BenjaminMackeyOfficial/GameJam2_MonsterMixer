@@ -56,11 +56,12 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     }
     public void Hover()
     {
-        //Debug.Log(gameObject.name);
+        EventBus.RequestEvent("ItemHovered", true).Invoke();
     }
     public void UnHover()
     {
-
+        EventBus.RequestEvent("ItemUnHovered", true).Invoke();
+        Debug.Log("UnHovered");
     }
 
     public bool CanTake(ItemTags tags)
