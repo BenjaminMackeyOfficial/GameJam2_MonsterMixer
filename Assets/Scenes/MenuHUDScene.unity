@@ -13938,9 +13938,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71719b75ac2827a49aafa5121bacc340, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
@@ -15594,9 +15594,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36f5701ed7be9ca4da43b7ee3f7b0cf9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
@@ -16363,9 +16363,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cbd9bf9eeb343f499fba81df31ba505, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
@@ -21306,9 +21306,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30b524ad1d7f9664fa556f5b22b3c355, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
@@ -26448,9 +26448,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49ef59729dad8bd4e85cd0ad9f0b85d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
@@ -33376,9 +33376,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 12947ee13debf1e4aac6ca7c206c774d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52c7205a06b85664082765e0c4217593, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
