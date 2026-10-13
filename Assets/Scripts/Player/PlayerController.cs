@@ -50,12 +50,17 @@ public class PlayerController : MonoBehaviour
     //
 
     [SerializeField] GameObject[] objs;
+
+    //interactions//
+    private Interactor interactor;
+    //
     
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         cam = transform.Find("Camera").gameObject;
         stateManager = GetComponent<PlayerStateManager>();
+        interactor = this.GetComponent<Interactor>();
         if (stateManager == null) stateManager = gameObject.AddComponent<PlayerStateManager>();
 
         if(inputActions == null) this.enabled = false;
@@ -64,6 +69,12 @@ public class PlayerController : MonoBehaviour
         //jump = inputActions.FindAction("Player/Jump");
         look = inputActions.FindAction("Player/Look");
         sprint = inputActions.FindAction("Player/Sprint");
+
+        inputActions.FindAction("Player/LeftHandInteract").started += _ => interactor.LeftClick();
+        inputActions.FindAction("Player/RightHandInteract").started += _ => interactor.RightClick();
+
+        inputActions.FindAction("Player/LeftHandInteract").canceled += _ => interactor.LeftUnClick();
+        inputActions.FindAction("Player/RightHandInteract").canceled += _ => interactor.RightUnClick();
 
         heightFromCent =  Vector3.up * (transform.localScale.y / 4);
 
@@ -152,9 +163,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        prog = math.lerp(prog, targProg, 0.1f);
-        camCamera.fieldOfView = Mathf.Lerp(FOV, zoomInFov, prog);
-
         rotateForLook();
         cam.transform.rotation = lookRot;
     }
@@ -179,6 +187,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         camCamera = cam.GetComponent<Camera>();
+
     }
 
     void FixedUpdate()

@@ -22,15 +22,17 @@ public class CustomEvent
 
     public void AddData(Data inputtedDat)
     {
-        foreach (Data dat in data)
+        for (int i = 0; i < data.Count; i++)
         {
-            if (dat.GetType() == inputtedDat.GetType())
+            if (data[i].GetType() == inputtedDat.GetType())
+            {
+                data[i] = inputtedDat;
                 return;
+            }
         }
-
         data.Add(inputtedDat);
     }
-
+    
     public T GetData<T>() where T : Data, new()
     {
         foreach (Data dat in data)
@@ -38,7 +40,6 @@ public class CustomEvent
             if (dat is T match)
                 return match;
         }
-
         return new T();
     }
 
@@ -46,7 +47,7 @@ public class CustomEvent
 
 public abstract class Data
 {
-    
+
 }
 
 public class GameObjData : Data
@@ -54,6 +55,10 @@ public class GameObjData : Data
     public GameObjData(GameObject gameObject)
     {
         obj = gameObject;
+    }
+    public GameObjData()
+    {
+        obj = null;
     }
     public GameObject obj;
 }
@@ -63,7 +68,36 @@ public class Vector2Data : Data
     {
         vec2 = vector2;
     }
+    public Vector2Data()
+    {
+        vec2 = Vector2.zero;
+    }
     public Vector2 vec2;
+}
+public class IntData : Data
+{
+    public IntData(int dat)
+    {
+        intVal = dat;
+    }
+    public IntData()
+    {
+        intVal = 0;
+    }
+    public int intVal;
+}
+public class TagData : Data
+{
+    public TagData(Tag dat)
+    {
+        tagVal = dat;
+    }
+    public TagData()
+    {
+        tagVal = null;
+    }
+
+    public Tag tagVal;
 }
 
 //feel free to extend off data for anything
