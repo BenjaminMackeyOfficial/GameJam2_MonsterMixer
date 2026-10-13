@@ -15,38 +15,36 @@ using UnityEngine.UI;
 #endregion
 
 public class AddAudio : MonoBehaviour
-{// Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    private BackgroundMusicManager backgroundMusicManager;
-
-    [Header("audio clip")]
-    [SerializeField] public AudioClip SlicingLemonLimes;// defines clip 
-    [SerializeField] public AudioClip Cheers;// defines clip 
-    [SerializeField] public AudioClip GlassClinks;// defines clip 
-    [SerializeField] public AudioClip SingleVGlassClink;// defines clip 
-    [SerializeField] public AudioClip PourDrink;// defines clip 
+{
+    [Header("Audio Clips - SFX (One-Shots)")]
+    [SerializeField] public AudioClip SlicingLemonLimes;
+    [SerializeField] public AudioClip Cheers;
+    [SerializeField] public AudioClip GlassClinks;
+    [SerializeField] public AudioClip SingleVGlassClink;
+    [SerializeField] public AudioClip PourDrink;
     [SerializeField] public AudioClip MixingDrinks;
+    [SerializeField] public AudioClip OtherSlicing;
+    [SerializeField] public AudioClip IceIntoGlass;
 
-    [SerializeField] public AudioClip OtherSlicing;// defines clip 
-    [SerializeField] public AudioClip IceIntoGlass;// defines clip 
-    [SerializeField] public AudioClip BatGirlAudioclip;// defines clip 
-    [SerializeField] public AudioClip BluegirlAudioclip;// defines clip 
-    [SerializeField] public AudioClip PigtailsAudioclip;// defines clip 
-    [SerializeField] public AudioClip NurseAudioclip;// defines clip 
-    [SerializeField] public AudioClip VampFabioAudioclip;// defines clip 
-    [SerializeField] public AudioClip ZombusterAudioclip;// defines clip 
-    [SerializeField] public AudioSource sourceSFXandDialogue;// defines audio source
-    private static AudioSource currentlyPlayingSource; //defines any currently playing for audio checks
-    [SerializeField] private float startingVolume = .35f;
+    [Header("Audio Clips - Dialogue (Button Events)")]
+    [SerializeField] public AudioClip BatGirlAudioclip;
+    [SerializeField] public AudioClip BluegirlAudioclip;
+    [SerializeField] public AudioClip PigtailsAudioclip;
+    [SerializeField] public AudioClip NurseAudioclip;
+    [SerializeField] public AudioClip VampFabioAudioclip;
+    [SerializeField] public AudioClip ZombusterAudioclip;
 
+    [Header("Audio Setup")]
+    [SerializeField] public AudioSource sourceSFXandDialogue;
+    [SerializeField] private float startingVolume = 0.35f;
 
     [Header("UI Elements")]
-    [SerializeField] public Slider volumeSlider; // defines  the slider ui element being used
+    [SerializeField] public Slider volumeSlider;
 
     private void Awake()
     {
         GameObject sliderObject = GameObject.Find("Volume");
-        if (sliderObject != null)
+        if (sliderObject != null && volumeSlider == null)
         {
             volumeSlider = sliderObject.GetComponent<Slider>();
         }
@@ -54,19 +52,19 @@ public class AddAudio : MonoBehaviour
         if (sourceSFXandDialogue == null) sourceSFXandDialogue = GetComponent<AudioSource>();
         if (sourceSFXandDialogue == null) sourceSFXandDialogue = gameObject.AddComponent<AudioSource>();
 
-        sourceSFXandDialogue.spatialBlend = 0f;
+        sourceSFXandDialogue.spatialBlend = 0f; // 2D Sound
         sourceSFXandDialogue.playOnAwake = false;
         sourceSFXandDialogue.mute = false;
-    
     }
+
     private void Start()
     {
         StartupAudio();
-       
     }
+
     public void StartupAudio()
     {
-        sourceSFXandDialogue.volume = startingVolume; // Safely sets 0.35f fallback
+        sourceSFXandDialogue.volume = startingVolume;
 
         if (volumeSlider != null)
         {
@@ -74,244 +72,68 @@ public class AddAudio : MonoBehaviour
             volumeSlider.maxValue = 1f;
 
 
-            if (volumeSlider.value != 1f && volumeSlider.value != 0f)// If another script already adjusted the slider from 1.0, match it
+            if (volumeSlider.value != 1f && volumeSlider.value != 0f)
             {
                 sourceSFXandDialogue.volume = volumeSlider.value;
             }
             else
             {
-                volumeSlider.value = sourceSFXandDialogue.volume; // Handshake 0.35f to UI
+                volumeSlider.value = sourceSFXandDialogue.volume;
             }
 
             volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
-
         }
     }
 
     public void OnVolumeChanged(float newVolume)
     {
-        if (sourceSFXandDialogue != null)  //allose for volumme to be changedc based on slider valuie during play 
+        if (sourceSFXandDialogue != null)
         {
             sourceSFXandDialogue.volume = newVolume;
         }
     }
- 
-    public void OnSlicingLemonLimes()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
 
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
+    public void OnSlicingLemonLimes() { PlaySFX(SlicingLemonLimes); }
+    public void OnCheers() { PlaySFX(Cheers); }
+    public void OnGlassClinks() { PlaySFX(GlassClinks); }
+    public void OnSingleVGlassClink() { PlaySFX(SingleVGlassClink); }
+    public void OnPourDrink()  { PlaySFX(PourDrink); }
+    public void OnMixingDrinks() { PlaySFX(MixingDrinks); }
+    public void OnIceIntoGlass() { PlaySFX(IceIntoGlass); }
+    public void OnOtherSlicing() { PlaySFX(OtherSlicing); }
+
+    public void OnBatGirlAudioclip() { PlayDialogue(BatGirlAudioclip); }
+    public void OnVampFabioAudioclip() { PlayDialogue(VampFabioAudioclip); }
+    public void OnBluegirlAudioclip() { PlayDialogue(BluegirlAudioclip); }
+    public void OnPigtailsAudioclip() { PlayDialogue(PigtailsAudioclip); }
+    public void OnNurseAudioclip() { PlayDialogue(NurseAudioclip); }
+    public void OnZombusterAudioclip() { PlayDialogue(ZombusterAudioclip); }
+
+    private void PlaySFX(AudioClip clip)
+    {
+        UpdateVolumeFromSlider();
+        if (sourceSFXandDialogue != null && clip != null)
         {
-            sourceSFXandDialogue.PlayOneShot(SlicingLemonLimes, 1.0f);//plays defined audio clip on ente of collider zone
-        
+          
+            sourceSFXandDialogue.PlayOneShot(clip, 2.0f);
         }
     }
-
-
-    public void OnCheers()
+    private void PlayDialogue(AudioClip clip)
     {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(Cheers, 1.0f);//plays defined audio clip on ente of collider zone
-   
-        }
-    }
-
-  
-    public void OnGlassClinks()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(GlassClinks, 1.0f);//plays defined audio clip on ente of collider zone
      
-        }
-    }
-
-    public void OnSingleVGlassClink()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(SingleVGlassClink, 1.0f);//plays defined audio clip on ente of collider zone
-      
-        }
-    }
-    public void OnPourDrink()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(PourDrink, 1.0f);//plays defined audio clip on ente of collider zone
-    
-        }
-    }
-    public void OnMixingDrinks()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(MixingDrinks, 1.0f);//plays defined audio clip on ente of collider zone
-    
-        }
-    }
-    public void OnIceIntoGlass()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(IceIntoGlass, 1.0f);//plays defined audio clip on ente of collider zone
-       
-      
-        }
-        
-    }
-    public void OnOtherSlicing()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.PlayOneShot(OtherSlicing, 1.0f);//plays defined audio clip on ente of collider zone
-       
-     
-        }
-   
-    }
-    public void OnBatGirlAudioclip()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
+        if (sourceSFXandDialogue != null && clip != null)
         {
             sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = BatGirlAudioclip;
-            sourceSFXandDialogue.loop = false;
-            sourceSFXandDialogue.Play();     
-                
-        }
-        
-    }
-    public void OnVampFabioAudioclip()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = VampFabioAudioclip;
+            sourceSFXandDialogue.clip = clip;
             sourceSFXandDialogue.loop = false;
             sourceSFXandDialogue.Play();
-           
         }
-      
     }
-    public void OnBluegirlAudioclip()
+    private void UpdateVolumeFromSlider()
     {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
+        if (volumeSlider != null && sourceSFXandDialogue != null)
         {
             sourceSFXandDialogue.volume = volumeSlider.value;
         }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = BluegirlAudioclip;
-            sourceSFXandDialogue.loop = false;
-            sourceSFXandDialogue.Play();
-            
-        }
-       
     }
-    public void OnPigtailsAudioclip()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = PigtailsAudioclip;
-            sourceSFXandDialogue.loop = false;
-            sourceSFXandDialogue.Play();
-         ;
-        }
-        
-
-    }
-    public void OnNurseAudioclip()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = NurseAudioclip;
-            sourceSFXandDialogue.loop = false;
-            sourceSFXandDialogue.Play();
-           
-        }
-        
-    }
-    public void OnZombusterAudioclip()
-    {
-        if (volumeSlider != null && sourceSFXandDialogue != null)// presets volume per new govenrences above
-        {
-            sourceSFXandDialogue.volume = volumeSlider.value;
-        }
-
-        if (sourceSFXandDialogue != null && sourceSFXandDialogue.clip != null)
-        {
-            sourceSFXandDialogue.volume = 2f;
-            sourceSFXandDialogue.clip = ZombusterAudioclip;
-            sourceSFXandDialogue.loop = false;
-            sourceSFXandDialogue.Play();
-             
-        }
-     
-    }
-
-
 }

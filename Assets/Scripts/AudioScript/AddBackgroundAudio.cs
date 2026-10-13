@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class BackgroundMusicManager : MonoBehaviour
             musicSource.clip = backgroundTrack;
             musicSource.loop = true; // Ensures it never stops
             musicSource.playOnAwake = true; // Optional: plays instantly when scene loads
-
+            musicSource.volume = 2f;
             if (!musicSource.isPlaying)
             {
                 musicSource.Play();
