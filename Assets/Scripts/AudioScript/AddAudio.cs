@@ -94,7 +94,21 @@ public class AddAudio : MonoBehaviour
             source.volume = newVolume;
         }
     }
+    public void OnSpeakeasyAudio()
+    {
+        if (volumeSlider != null && source != null)// presets volume per new govenrences above
+        {
+            source.volume = volumeSlider.value;
+        }
 
+        if (source != null && source.clip != null)
+        {
+            source.volume = 1.5f;
+            source.clip = SpeakeasyAudio;
+            source.loop = true;
+            source.Play();
+        }
+    }
     public void OnSlicingLemonLimes()
     {
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
@@ -121,22 +135,7 @@ public class AddAudio : MonoBehaviour
         }
     }
 
-    public void OnSpeakeasyAudio()
-    {
-        if (volumeSlider != null && source != null)// presets volume per new govenrences above
-        {
-            source.volume = volumeSlider.value;
-        }
-
-        if (source != null && source.clip != null)
-        {
-            source.volume = 1.5f;
-            source.clip = SpeakeasyAudio;
-            source.loop = true;
-            source.Play(); 
-        }
-    }
-
+  
     public void OnGlassClinks()
     {
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
@@ -221,6 +220,7 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = BatGirlAudioclip;
+            source.loop = false;
             source.Play();          
         }
     }
@@ -235,6 +235,7 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = VampFabioAudioclip;
+            source.loop = false;
             source.Play();
           
         }
@@ -250,6 +251,7 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = BluegirlAudioclip;
+            source.loop = false;
             source.Play();
             
         }
@@ -265,9 +267,11 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = PigtailsAudioclip;
+            source.loop = false;
             source.Play();
            
         }
+        
     }
     public void OnNurseAudioclip()
     {
@@ -280,9 +284,11 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = NurseAudioclip;
+            source.loop = false;
             source.Play();
            
         }
+        
     }
     public void OnZombusterAudioclip()
     {
@@ -295,10 +301,11 @@ public class AddAudio : MonoBehaviour
         {
             source.volume = 2f;
             source.clip = ZombusterAudioclip;
+            source.loop = false;
             source.Play();
             
         }
-
+      
     }
 
 
