@@ -17,6 +17,8 @@ using UnityEngine.UI;
 public class AddAudio : MonoBehaviour
 {// Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    private BackgroundMusicManager backgroundMusicManager;
+
     [Header("audio clip")]
     [SerializeField] public AudioClip SlicingLemonLimes;// defines clip 
     [SerializeField] public AudioClip Cheers;// defines clip 
@@ -27,7 +29,7 @@ public class AddAudio : MonoBehaviour
 
     [SerializeField] public AudioClip OtherSlicing;// defines clip 
     [SerializeField] public AudioClip IceIntoGlass;// defines clip 
-    [SerializeField] public AudioClip SpeakeasyAudio;// defines clip 
+   // [SerializeField] public AudioClip SpeakeasyAudio;// defines clip 
     [SerializeField] public AudioClip BatGirlAudioclip;// defines clip 
     [SerializeField] public AudioClip BluegirlAudioclip;// defines clip 
     [SerializeField] public AudioClip PigtailsAudioclip;// defines clip 
@@ -56,12 +58,12 @@ public class AddAudio : MonoBehaviour
         source.spatialBlend = 0f;
         source.playOnAwake = false;
         source.mute = false;
-        source.clip = SpeakeasyAudio;
+        source.clip = backgroundMusicManager.backgroundTrack;
     }
     private void Start()
     {
         StartupAudio();
-        OnSpeakeasyAudio();
+        //OnSpeakeasyAudio();
     }
     public void StartupAudio()
     {
@@ -94,21 +96,21 @@ public class AddAudio : MonoBehaviour
             source.volume = newVolume;
         }
     }
-    public void OnSpeakeasyAudio()
-    {
-        if (volumeSlider != null && source != null)// presets volume per new govenrences above
-        {
-            source.volume = volumeSlider.value;
-        }
+    //public void OnSpeakeasyAudio()
+    //{
+    //    if (volumeSlider != null && source != null)// presets volume per new govenrences above
+    //    {
+    //        source.volume = volumeSlider.value;
+    //    }
 
-        if (source != null && source.clip != null)
-        {
-            source.volume = 1.5f;
-            source.clip = SpeakeasyAudio;
-            source.loop = true;
-            source.Play();
-        }
-    }
+    //    if (source != null && source.clip != null)
+    //    {
+    //        source.volume = 1.5f;
+    //        source.clip = SpeakeasyAudio;
+    //        source.loop = true;
+    //        source.Play();
+    //    }
+    //}
     public void OnSlicingLemonLimes()
     {
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
@@ -119,8 +121,10 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(SlicingLemonLimes, 1.0f);//plays defined audio clip on ente of collider zone
+        
         }
     }
+
 
     public void OnCheers()
     {
@@ -132,6 +136,7 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(Cheers, 1.0f);//plays defined audio clip on ente of collider zone
+   
         }
     }
 
@@ -146,6 +151,7 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(GlassClinks, 1.0f);//plays defined audio clip on ente of collider zone
+     
         }
     }
 
@@ -159,6 +165,7 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(SingleVGlassClink, 1.0f);//plays defined audio clip on ente of collider zone
+      
         }
     }
     public void OnPourDrink()
@@ -171,6 +178,7 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(PourDrink, 1.0f);//plays defined audio clip on ente of collider zone
+    
         }
     }
     public void OnMixingDrinks()
@@ -183,6 +191,7 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(MixingDrinks, 1.0f);//plays defined audio clip on ente of collider zone
+    
         }
     }
     public void OnIceIntoGlass()
@@ -195,7 +204,10 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(IceIntoGlass, 1.0f);//plays defined audio clip on ente of collider zone
+       
+      
         }
+        
     }
     public void OnOtherSlicing()
     {
@@ -207,7 +219,10 @@ public class AddAudio : MonoBehaviour
         if (source != null && source.clip != null)
         {
             source.PlayOneShot(OtherSlicing, 1.0f);//plays defined audio clip on ente of collider zone
+       
+     
         }
+   
     }
     public void OnBatGirlAudioclip()
     {
@@ -221,8 +236,10 @@ public class AddAudio : MonoBehaviour
             source.volume = 2f;
             source.clip = BatGirlAudioclip;
             source.loop = false;
-            source.Play();          
+            source.Play();     
+                
         }
+        
     }
     public void OnVampFabioAudioclip()
     {
@@ -237,8 +254,9 @@ public class AddAudio : MonoBehaviour
             source.clip = VampFabioAudioclip;
             source.loop = false;
             source.Play();
-          
+           
         }
+      
     }
     public void OnBluegirlAudioclip()
     {
@@ -255,6 +273,7 @@ public class AddAudio : MonoBehaviour
             source.Play();
             
         }
+       
     }
     public void OnPigtailsAudioclip()
     {
@@ -269,9 +288,10 @@ public class AddAudio : MonoBehaviour
             source.clip = PigtailsAudioclip;
             source.loop = false;
             source.Play();
-           
+         ;
         }
         
+
     }
     public void OnNurseAudioclip()
     {
@@ -303,9 +323,9 @@ public class AddAudio : MonoBehaviour
             source.clip = ZombusterAudioclip;
             source.loop = false;
             source.Play();
-            
+             
         }
-      
+     
     }
 
 
