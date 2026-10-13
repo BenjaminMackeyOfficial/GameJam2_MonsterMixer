@@ -130,7 +130,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(SpeakeasyAudio, 1.5f);//plays defined audio clip on ente of collider zone
+            source.volume = 1.5f;
+            source.clip = SpeakeasyAudio;
+            source.loop = true;
+            source.Play(); 
         }
     }
 
@@ -216,7 +219,9 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(BatGirlAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = BatGirlAudioclip;
+            source.Play();          
         }
     }
     public void OnVampFabioAudioclip()
@@ -228,7 +233,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(VampFabioAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = VampFabioAudioclip;
+            source.Play();
+          
         }
     }
     public void OnBluegirlAudioclip()
@@ -240,7 +248,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(BluegirlAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = BluegirlAudioclip;
+            source.Play();
+            
         }
     }
     public void OnPigtailsAudioclip()
@@ -252,7 +263,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(PigtailsAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = PigtailsAudioclip;
+            source.Play();
+           
         }
     }
     public void OnNurseAudioclip()
@@ -264,7 +278,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(NurseAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = NurseAudioclip;
+            source.Play();
+           
         }
     }
     public void OnZombusterAudioclip()
@@ -276,7 +293,10 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(ZombusterAudioclip, 1.0f);//plays defined audio clip on ente of collider zone
+            source.volume = 2f;
+            source.clip = ZombusterAudioclip;
+            source.Play();
+            
         }
 
     }
