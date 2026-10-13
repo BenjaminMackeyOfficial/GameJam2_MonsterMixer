@@ -20,6 +20,7 @@ public class GeneralCameraControl : MonoBehaviour
     {
         TryGetComponent<Camera>(out cam);
         if(cam == null) Destroy(this);
+        targFov = BaseFOV;
     }
 
     void Start()

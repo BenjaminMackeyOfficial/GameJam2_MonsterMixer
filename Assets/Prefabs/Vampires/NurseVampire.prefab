@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5666818343110762617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1483252319568763656}
+  - component: {fileID: 3372941354748931778}
+  - component: {fileID: 7814220149698501207}
+  - component: {fileID: -1106879373479872099}
+  - component: {fileID: -72916551594350320}
+  - component: {fileID: 7090852553518422510}
+  m_Layer: 0
+  m_Name: NurseVampire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1483252319568763656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -526.3792, y: 27.92141, z: 225.13893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3372941354748931778
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 2b72b0b69d5702b4193e3f8b91b10206, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 128, y: 128}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!114 &7814220149698501207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a33feda7e59fb744bc0781a6f70a0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VampireGeneralController
+  waitTime: 0
+  ReturnPoint: {x: 0, y: 0, z: 0}
+  ableToGive: 0
+  patienceLevel: 12
+  maxWaitTimeToGetAchievment: 12
+  state: 0
+  DialougeArivedAtBar:
+  - "Like OMG That Ponytail Nosferatu Goth is like sooo old.  I could retire on his
+    co-pay\u2026 Canya get me like a pink Cosmo with a little B positive?"
+  DialougeUnhappyMidDrinkMake: []
+  DialougePleasedMidDrinkMake:
+  - "So like I\u2019m not really a huge bimbo\u2026 just a moderate one\u2026 giggle.. 
+    Wana hang out after your shift I could give ya a physical and do some bloodwork\u2026"
+  DialougeLeavingBarUpset:
+  - "\t\u2026..    \u2026\u2026..    Well that wasn\u2019t all that satisfying \u2026
+    I\u2019ll need to find something else \u2026 say\u2026 when you off?"
+  DialougeLeavingBarHappy:
+  - "Passable\u2026 just\u2026 ya need to do better Health Practitioner\u2019s orders\u2026
+    if ya want a long healthy life that is\u2026"
+  DialougeLeavingBarPerfect:
+  - "W. O. W.  and I don\u2019t mean that other WoW\u2026 this is the best drink
+    I\u2019ve had in a looong time .. I was thinking about jumpin ya and eatin ya
+    after the bar closes but buddy I need you right where you are\u2026 here take
+    this token of approval to buy you safe passage later."
+--- !u!114 &-1106879373479872099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea97086e8e6d5fa43a86b12a1220414c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VampireScorer
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
+  hoverText: 
+  type: 1
+  enforceWrongTags: 0
+  enforceAllTags: 0
+  hasInfinate: 0
+  wantedTags:
+  - _name: Vodka
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Lime
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: B+
+    _canHaveMultiple: 0
+    _count: 0
+  giveTags: []
+  itemDisplayPlatform: {fileID: 5666818343110762617}
+  heldObject: {fileID: 0}
+  timeToProscess: 0
+--- !u!114 &-72916551594350320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b7b85491d6e2f4688eaa5899e105d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FaceThePlayer
+  Offset: {x: 0, y: 0, z: 0}
+--- !u!65 &7090852553518422510
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 128, y: 128, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
