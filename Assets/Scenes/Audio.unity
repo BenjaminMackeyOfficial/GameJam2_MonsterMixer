@@ -285,12 +285,12 @@ MonoBehaviour:
   OtherSlicing: {fileID: 8300000, guid: 01b7feeafa328b24cb93a47ee82a8d25, type: 3}
   IceIntoGlass: {fileID: 8300000, guid: ba6e398cc76460049acb51ae9e3f07e2, type: 3}
   SpeakeasyAudio: {fileID: 8300000, guid: f4d6a5e1ccf93714ea3264bab1287c6a, type: 3}
-  BatGirlAudioclip: {fileID: 0}
-  BluegirlAudioclip: {fileID: 0}
-  PigtailsAudioclip: {fileID: 0}
-  NurseAudioclip: {fileID: 0}
-  VampFabioAudioclip: {fileID: 0}
-  ZombusterAudioclip: {fileID: 0}
+  BatGirlAudioclip: {fileID: 8300000, guid: f2845a8018132bd41b0de3713906c666, type: 3}
+  BluegirlAudioclip: {fileID: 8300000, guid: 6f44ffc2bca09e248a1dd7415461e7e1, type: 3}
+  PigtailsAudioclip: {fileID: 8300000, guid: 5121f5aa6f4a51243a5426141781a6cf, type: 3}
+  NurseAudioclip: {fileID: 8300000, guid: 016ff860a4e0c8b45b5cd3bc798dd483, type: 3}
+  VampFabioAudioclip: {fileID: 8300000, guid: 3488d4f56281a0f4198b07498fcf1185, type: 3}
+  ZombusterAudioclip: {fileID: 8300000, guid: 72a2c57f12dbdff40988b48b35199f42, type: 3}
   startingVolume: 0.35
   volumeSlider: {fileID: 7625879509146028426}
 --- !u!4 &1020458586
