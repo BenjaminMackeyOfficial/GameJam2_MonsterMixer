@@ -130,7 +130,7 @@ public class AddAudio : MonoBehaviour
 
         if (source != null && source.clip != null)
         {
-            source.PlayOneShot(SpeakeasyAudio, .50f);//plays defined audio clip on ente of collider zone
+            source.PlayOneShot(SpeakeasyAudio, 1.5f);//plays defined audio clip on ente of collider zone
         }
     }
 
