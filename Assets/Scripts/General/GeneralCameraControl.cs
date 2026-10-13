@@ -36,6 +36,7 @@ public class GeneralCameraControl : MonoBehaviour
     void Zoom1()
     {
         targFov = zoomLevel1;
+        Debug.Log(gameObject.name);
     }
     void Zoom2()
     {

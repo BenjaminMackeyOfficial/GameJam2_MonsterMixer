@@ -17,7 +17,7 @@ public class PopupDialouge : PopupBox
     {
         attatchedObj = givenAttatchedObj;
         transform.position = (attatchedObj.transform.position + 
-                            new Vector3(0, attatchedObj.transform.lossyScale.y / 2 + 5, 0 ));
+                            new Vector3(0, attatchedObj.transform.lossyScale.y / 2 + 2, 0 ));
         if(!TryGetComponent<Canvas>(out selfCanvasPlane)) 
         {
             Debug.Log(selfCanvasPlane);

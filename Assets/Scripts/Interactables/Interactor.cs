@@ -53,9 +53,16 @@ public class Interactor : MonoBehaviour
     {
         RaycastHit hit;
         Physics.Raycast(raycastFrom.position, raycastFrom.forward, out hit, maxHoverDist);
-        if(hit.collider != null && hit.collider.gameObject != prevHovered)
+        if (hit.collider == null && prevInteract != null)
+        {
+            prevInteract.UnHover();
+            prevInteract = null;
+            prevHovered = null;
+        }
+        if (hit.collider != null && (prevHovered == null || hit.collider.gameObject != prevHovered))
         {
             if(prevInteract != null) prevInteract.UnHover();
+            
             prevInteract = null;
             prevHovered = null;
 

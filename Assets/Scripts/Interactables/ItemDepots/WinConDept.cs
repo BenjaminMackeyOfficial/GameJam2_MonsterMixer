@@ -5,6 +5,8 @@ public class WinConDept : ItemDepot
     protected override void Start()
     {
         base.Start();
+        EventBus.RequestEvent("GaveItemAndProgressed", true).ping += PositiveResponse;
+        EventBus.RequestEvent("GaveUslessItem", true).ping += NegativeResponse;
         ServiceHub.Instance.roundProgressionManager.HandOverRequiredTags(wantedTags);
     }
     private bool RecieveKeyItem(ItemTags obj)
@@ -32,10 +34,19 @@ public class WinConDept : ItemDepot
 
         if(RecieveKeyItem(tags))
         {
-            //do whatever you need, the checking function adds it to the score if its correct
+
         }
 
         Destroy(item);
         return null;
+    }
+
+    private void PositiveResponse()
+    {
+        ServiceHub.Instance.popupManager.CreateDialouge("Yeah... thisll work", gameObject);
+    }
+    private void NegativeResponse()
+    {
+        ServiceHub.Instance.popupManager.CreateDialouge("...What the hell is this? I dont want this", gameObject);
     }
 }
