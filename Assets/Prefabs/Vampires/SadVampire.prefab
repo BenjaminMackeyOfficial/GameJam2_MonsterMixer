@@ -110,8 +110,8 @@ MonoBehaviour:
   waitTime: 0
   ReturnPoint: {x: 0, y: 0, z: 0}
   ableToGive: 0
-  patienceLevel: 0
-  maxWaitTimeToGetAchievment: 0
+  patienceLevel: 1
+  maxWaitTimeToGetAchievment: 50
   state: 0
   DialougeArivedAtBar:
   - "Hey\u2026 I\u2019m sorry \u2026 if it\u2019s not too much trouble could you
@@ -160,6 +160,9 @@ MonoBehaviour:
     _canHaveMultiple: 0
     _count: 0
   - _name: Lemon
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Glass
     _canHaveMultiple: 0
     _count: 0
   giveTags: []

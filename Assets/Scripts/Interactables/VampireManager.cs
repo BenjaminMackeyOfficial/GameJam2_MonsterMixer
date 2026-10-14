@@ -14,7 +14,7 @@ public class VampireManager : MonoBehaviour
     [SerializeField] Transform spawnPos;
     [SerializeField] GameObject[] vampirePrefabs;
     private List<GameObject> prevUsedVamps = new List<GameObject>();
-    private int repeatCount;
+    [SerializeField] int repeatCount;
     [SerializeField] GameObject[] barPositionGameObjects; //lets you scootch around bar positions
     private BarPosition[] barPositions;
 
@@ -47,17 +47,27 @@ public class VampireManager : MonoBehaviour
 
     private GameObject GetUnusedVampPrefab()
     {
-        if(vampirePrefabs == null) return null;
+        if (vampirePrefabs == null || vampirePrefabs.Length == 0)
+            return null;
+
         foreach (GameObject item in vampirePrefabs)
         {
-            if(prevUsedVamps.Contains(item)) continue;
+            if (item == null || prevUsedVamps.Contains(item))
+                continue;
 
             prevUsedVamps.Add(item);
-            if(prevUsedVamps.Count > repeatCount) prevUsedVamps.RemoveAt(0);
+
+            while (prevUsedVamps.Count > repeatCount)
+                prevUsedVamps.RemoveAt(0);
+
             return item;
         }
+        GameObject oldest = prevUsedVamps[0];
+        prevUsedVamps.RemoveAt(0);
 
-        return null;
+        prevUsedVamps.Add(oldest);
+
+        return oldest;
     }
 
     private void TrySpawnVamp()

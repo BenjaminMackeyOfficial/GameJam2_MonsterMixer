@@ -110,11 +110,11 @@ MonoBehaviour:
   waitTime: 0
   ReturnPoint: {x: 0, y: 0, z: 0}
   ableToGive: 0
-  patienceLevel: 10
-  maxWaitTimeToGetAchievment: 20
+  patienceLevel: 3
+  maxWaitTimeToGetAchievment: 40
   state: 0
   DialougeArivedAtBar:
-  - "RRRRRRRRR\u2026Wannnnnnnttttt Bacardiiiii and \u2026.LIMMMMEEEEEEEE\u2026\u2026\u2026.with
+  - "RRRRRRRRR\u2026Wannnnnnnttttt Whiskeeeeeyy and \u2026.LIMMMMEEEEEEEE\u2026\u2026\u2026.with
     Tangy A negativeeeeee"
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
@@ -147,13 +147,16 @@ MonoBehaviour:
   enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
-  - _name: Bacardi
+  - _name: Whiskey
     _canHaveMultiple: 0
     _count: 0
   - _name: Lime
     _canHaveMultiple: 0
     _count: 0
   - _name: A-
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Glass
     _canHaveMultiple: 0
     _count: 0
   giveTags: []

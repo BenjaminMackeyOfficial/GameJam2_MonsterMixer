@@ -110,7 +110,7 @@ MonoBehaviour:
   waitTime: 0
   ReturnPoint: {x: 0, y: 0, z: 0}
   ableToGive: 0
-  patienceLevel: 20
+  patienceLevel: 1
   maxWaitTimeToGetAchievment: 300
   state: 0
   DialougeArivedAtBar:
@@ -170,6 +170,9 @@ MonoBehaviour:
     _canHaveMultiple: 0
     _count: 0
   - _name: 0+
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Glass
     _canHaveMultiple: 0
     _count: 0
   giveTags: []

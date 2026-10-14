@@ -110,8 +110,8 @@ MonoBehaviour:
   waitTime: 0
   ReturnPoint: {x: 0, y: 0, z: 0}
   ableToGive: 0
-  patienceLevel: 12
-  maxWaitTimeToGetAchievment: 12
+  patienceLevel: 1
+  maxWaitTimeToGetAchievment: 30
   state: 0
   DialougeArivedAtBar:
   - "Like OMG That Ponytail Nosferatu Goth is like sooo old.  I could retire on his

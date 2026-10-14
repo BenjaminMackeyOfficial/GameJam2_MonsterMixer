@@ -152,6 +152,9 @@ MonoBehaviour:
   - _name: A+
     _canHaveMultiple: 0
     _count: 0
+  - _name: Glass
+    _canHaveMultiple: 0
+    _count: 0
   giveTags: []
   itemDisplayPlatform: {fileID: 1474969110352684941}
   heldObject: {fileID: 1856862053833855955, guid: 8e2de03911bcace49a74f288eed47f5e, type: 3}

@@ -43,6 +43,8 @@ public class ItemTags : MonoBehaviour
 
     public static bool DoIQualifyForDrinkPng(ItemTags item)
     {
+        Debug.Log(item.HasTag("Glass"));
+        Debug.Log("Tag count:" + item._tags.Count);
         if (item.HasTag("Glass") != null && item._tags.Count >= 1)
         {
             return true;
@@ -52,17 +54,28 @@ public class ItemTags : MonoBehaviour
             return false;
         }
     }
-    
+
     private void ConvertToDrink()
     {
-        MeshRenderer mr;
-        MeshFilter mf;
-        if (TryGetComponent(out mr)) Destroy(mr);
-        if (TryGetComponent(out mf)) Destroy(mf);
+ 
+        if (TryGetComponent(out MeshRenderer mr)) mr.enabled = false;
+        if(TryGetComponent(out SpriteRenderer osr)) osr.enabled = false;
 
         SpriteRenderer original = ServiceHub.Instance.spriteRendererDrink;
 
-        SpriteRenderer sr = gameObject.AddComponent<SpriteRenderer>();
+
+        GameObject spriteObject = new GameObject("DrinkSprite");
+        spriteObject.transform.SetParent(transform, false);
+
+
+        spriteObject.layer = LayerMask.NameToLayer("Hands");
+        spriteObject.transform.localScale = new Vector3(
+            transform.lossyScale.x != 0 ? 1f / transform.lossyScale.x : 1f,
+            transform.lossyScale.y != 0 ? 1f / transform.lossyScale.y : 1f,
+            transform.lossyScale.z != 0 ? 1f / transform.lossyScale.z : 1f
+        );
+
+        SpriteRenderer sr = spriteObject.AddComponent<SpriteRenderer>();
 
         sr.sprite = original.sprite;
         sr.color = original.color;
@@ -71,7 +84,6 @@ public class ItemTags : MonoBehaviour
         sr.sortingOrder = original.sortingOrder;
         sr.flipX = original.flipX;
         sr.flipY = original.flipY;
-
     }
 
     public Tag HasTag(string name)
@@ -98,8 +110,9 @@ public class ItemTags : MonoBehaviour
             return true;
         }
 
-        if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
         _tags.Add(new Tag(tagName, canHaveMulti));
+
+        if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
         return true;
     }
     public bool AddTag(Tag handedTag)
@@ -113,9 +126,9 @@ public class ItemTags : MonoBehaviour
             tag._count += handedTag._count;
             return true;
         }
+        _tags.Add(handedTag);
 
         if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
-        _tags.Add(handedTag);
         return true;
     }
     public void RemoveTag() // add iff nessecary, we flyin through!!

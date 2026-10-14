@@ -120,6 +120,9 @@ MonoBehaviour:
   - _name: 0+
     _canHaveMultiple: 0
     _count: 0
+  - _name: Glass
+    _canHaveMultiple: 0
+    _count: 0
   giveTags: []
   itemDisplayPlatform: {fileID: 3646558515360644724}
   heldObject: {fileID: 7792309822440527085, guid: 8aa75ebf3c8eac7409f651c4449a4896, type: 3}
@@ -139,8 +142,8 @@ MonoBehaviour:
   waitTime: 0
   ReturnPoint: {x: 0, y: 0, z: 0}
   ableToGive: 0
-  patienceLevel: 5
-  maxWaitTimeToGetAchievment: 20
+  patienceLevel: 2
+  maxWaitTimeToGetAchievment: 40
   state: 0
   DialougeArivedAtBar:
   - "Hello Handsome \u2026. Be a sport and mix me a Tequila Bloodmoon. what is that
