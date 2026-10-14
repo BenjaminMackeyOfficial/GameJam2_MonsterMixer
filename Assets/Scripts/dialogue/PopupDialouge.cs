@@ -12,6 +12,7 @@ public class PopupDialouge : PopupBox
     [SerializeField] char[] slowCharachters;
     [SerializeField] char[] skipCharachters;
 
+
     [SerializeField] float generalScale;
 
     private Vector2 targSize = Vector2.zero;
@@ -109,8 +110,8 @@ public class PopupDialouge : PopupBox
     {
         text.ForceMeshUpdate();
         Vector2 preferredSize = text.GetPreferredValues();
-        float finalWidth = Mathf.Max(preferredSize.x + generalScale, 2);
-        float finalHeight = Mathf.Max(preferredSize.y + generalScale, 1);
+        float finalWidth = Mathf.Max(preferredSize.x + generalScale * 2, 2);
+        float finalHeight = Mathf.Max(preferredSize.y + generalScale * 2, 1);
         targSize = new Vector2(finalWidth, finalHeight);
     }
 
@@ -162,30 +163,41 @@ public class PopupDialouge : PopupBox
         foreach (char letter in dialogueString.ToCharArray())
         {
             //CODE VOMIT, FIX LATER
-            if (cancelLeft && attatchedObj.name == "InspectUiTargetL")
+            if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))
             {
                 break;
             }
-            if(cancelRight && attatchedObj.name == "InspectUiTargetR")
+            if(attatchedObj == null || (cancelRight && attatchedObj.name == "InspectUiTargetR"))
             {
                 break;
             }
             //===================
             locSpeed = typerwriterSpeed;
 
-            if(slowCharachters.Contains(letter)) locSpeed *= slowDownMult; //slowing down for periods
+            if(slowCharachters.Contains(letter)) locSpeed = slowDownMult; //slowing down for periods
             if(skipCharachters.Contains(letter)) locSpeed = 0.001f; // skipping things like spaces
+            if (text.text.Length % 40 == 0) text.text += "\n";
             
             text.text += letter;
 
             ResizeCanvas();
+
+            if (text.text.Length > 70 && letter == '.')
+            {
+                Debug.Log("EEEEUUUU");
+                yield return new WaitForSeconds(4);
+                text.text = "";
+            }
+
             yield return new WaitForSeconds(locSpeed);
+
         }
 
-        for (int i = 0; i < (text.text.Length * 0.2f) * 1000; i++)
+        for (int i = 0; i < 4000; i++)
         {
             //CODE VOMIT, FIX LATER
-            if (cancelLeft && attatchedObj.name == "InspectUiTargetL")
+            if (attatchedObj == null) Destroy(gameObject);
+            if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))
             {
                 cancelLeft = false;
                 text.text = "";
@@ -196,7 +208,7 @@ public class PopupDialouge : PopupBox
                 isTypewriterActive = false;
                 Destroy(gameObject);
             }
-            if (cancelRight && attatchedObj.name == "InspectUiTargetR")
+            if (attatchedObj == null || (cancelRight && attatchedObj.name == "InspectUiTargetR"))
             {
                 cancelRight = false;
                 text.text = "";

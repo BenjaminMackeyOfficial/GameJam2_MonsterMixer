@@ -120,11 +120,11 @@ MonoBehaviour:
   attatchedObj: {fileID: 0}
   selfCanvasPlane: {fileID: 0}
   text: {fileID: 7636352873952180497}
-  slowDownMult: 10
+  slowDownMult: 0.5
   typerwriterSpeed: 0.03
-  slowCharachters: 2e002c00
+  slowCharachters: 2e002c003f00
   skipCharachters: 20002700
-  generalScale: 1
+  generalScale: 0.5
 --- !u!114 &3277856081881699230
 MonoBehaviour:
   m_ObjectHideFlags: 0
