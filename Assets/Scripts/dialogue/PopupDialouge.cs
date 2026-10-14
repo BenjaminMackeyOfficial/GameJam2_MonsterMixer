@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.UI.Image;
+
 
 public class PopupDialouge : PopupBox
 {
