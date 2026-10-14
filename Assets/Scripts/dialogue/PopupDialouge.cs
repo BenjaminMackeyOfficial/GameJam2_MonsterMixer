@@ -55,7 +55,7 @@ public class PopupDialouge : PopupBox
         if(generalScale <= 0.001f)generalScale = 1f;
 
         attatchedObj = givenAttatchedObj;
-        transform.position = GetPositionAbove(attatchedObj,Vector3.up * generalScale);
+        transform.position = GetPositionAbove(attatchedObj,Vector3.up * (generalScale * 2));
         if(!TryGetComponent<Canvas>(out selfCanvasPlane)) 
         {
             Debug.Log(selfCanvasPlane);
@@ -160,6 +160,7 @@ public class PopupDialouge : PopupBox
             dialogueString = dialogueString.Substring(2);
         }
 
+        bool switchCount = false;
         foreach (char letter in dialogueString.ToCharArray())
         {
             //CODE VOMIT, FIX LATER
@@ -174,9 +175,15 @@ public class PopupDialouge : PopupBox
             //===================
             locSpeed = typerwriterSpeed;
 
-            if(slowCharachters.Contains(letter)) locSpeed = slowDownMult; //slowing down for periods
+            if (text.text.Length % 40 == 0) switchCount = true;
+            if (slowCharachters.Contains(letter)) locSpeed = slowDownMult; //slowing down for periods
             if(skipCharachters.Contains(letter)) locSpeed = 0.001f; // skipping things like spaces
-            if (text.text.Length % 40 == 0) text.text += "\n";
+            if (letter == ' ' && switchCount)
+            {
+                switchCount = false;
+                text.text += "\n";
+            }
+         
             
             text.text += letter;
 
@@ -193,8 +200,9 @@ public class PopupDialouge : PopupBox
 
         }
 
-        for (int i = 0; i < 4000; i++)
+        for (int i = 0; i < 400; i++)
         {
+            Debug.Log(i);
             //CODE VOMIT, FIX LATER
             if (attatchedObj == null) Destroy(gameObject);
             if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))
