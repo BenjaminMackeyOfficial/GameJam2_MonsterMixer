@@ -39,7 +39,7 @@ public class RoundProgressionManager : MonoBehaviour
         countSinceLastTime = haveRecieved.Count;
         Debug.Log(countSinceLastTime);
         Debug.Log(totalLookingFor.Length);
-        if (countSinceLastTime >= totalLookingFor.Length) StartCoroutine(VictorySpeach());
+        if (countSinceLastTime >= 6) StartCoroutine(VictorySpeach());
     }
 
     private IEnumerator VictorySpeach()
