@@ -54,14 +54,17 @@ public class ItemDepot : MonoBehaviour, Iinteractable
         }
         
     }
+    private GameObject outline;
     public void Hover()
     {
         EventBus.RequestEvent("ItemHovered", true).Invoke();
+        if (outline != null) Destroy(outline);
+        outline = Utility.CreateBoxColliderOutline(GetComponent<BoxCollider>(), Color.yellow, ServiceHub.Instance.generalOutlineMat);
     }
     public void UnHover()
     {
         EventBus.RequestEvent("ItemUnHovered", true).Invoke();
-        Debug.Log("UnHovered");
+        if (outline != null) Destroy(outline);
     }
 
     public bool CanTake(ItemTags tags)

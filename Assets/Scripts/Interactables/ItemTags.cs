@@ -1,5 +1,7 @@
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [System.Serializable]
@@ -39,6 +41,39 @@ public class ItemTags : MonoBehaviour
 {
     [SerializeField] List<Tag> _tags;
 
+    public static bool DoIQualifyForDrinkPng(ItemTags item)
+    {
+        if (item.HasTag("Glass") != null && item._tags.Count >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    private void ConvertToDrink()
+    {
+        MeshRenderer mr;
+        MeshFilter mf;
+        if (TryGetComponent(out mr)) Destroy(mr);
+        if (TryGetComponent(out mf)) Destroy(mf);
+
+        SpriteRenderer original = ServiceHub.Instance.spriteRendererDrink;
+
+        SpriteRenderer sr = gameObject.AddComponent<SpriteRenderer>();
+
+        sr.sprite = original.sprite;
+        sr.color = original.color;
+        sr.sharedMaterial = original.sharedMaterial;
+        sr.sortingLayerID = original.sortingLayerID;
+        sr.sortingOrder = original.sortingOrder;
+        sr.flipX = original.flipX;
+        sr.flipY = original.flipY;
+
+    }
+
     public Tag HasTag(string name)
     {
         foreach (Tag tag in _tags)
@@ -62,6 +97,8 @@ public class ItemTags : MonoBehaviour
             tag._count += 1;
             return true;
         }
+
+        if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
         _tags.Add(new Tag(tagName, canHaveMulti));
         return true;
     }
@@ -76,6 +113,8 @@ public class ItemTags : MonoBehaviour
             tag._count += handedTag._count;
             return true;
         }
+
+        if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
         _tags.Add(handedTag);
         return true;
     }

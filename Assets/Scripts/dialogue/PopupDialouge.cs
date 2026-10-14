@@ -202,7 +202,6 @@ public class PopupDialouge : PopupBox
 
         for (int i = 0; i < 400; i++)
         {
-            Debug.Log(i);
             //CODE VOMIT, FIX LATER
             if (attatchedObj == null) Destroy(gameObject);
             if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))

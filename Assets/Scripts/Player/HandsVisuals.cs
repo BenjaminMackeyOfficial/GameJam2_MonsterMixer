@@ -84,6 +84,7 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
             holdingInLeftHand = Instantiate(obj);
             holdingInLeftHand.layer = 10;
             holdingInLeftHand.transform.LookAt(ServiceHub.Instance.cameras.overlayCamera.transform);
+            holdingInLeftHand.transform.localScale *= 4;
         }
         else
         {
@@ -107,6 +108,7 @@ public class HandsVisuals : MonoBehaviour //THIS WHOLE SCRIPT IS ONLY VISUALS!!!
             holdingInRightHand = Instantiate(obj);
             holdingInRightHand.layer = 10;
             holdingInRightHand.transform.LookAt(ServiceHub.Instance.cameras.overlayCamera.transform);
+            holdingInRightHand.transform.localScale *= 4;
         }
         else
         {

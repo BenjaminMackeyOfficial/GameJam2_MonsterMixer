@@ -16,6 +16,8 @@ public class ServiceHub : MonoBehaviour
     public PopupManager popupManager;
     public TipsScoring tips;
     public CameraDataHolder cameras;
+    public Material generalOutlineMat;
+    public SpriteRenderer spriteRendererDrink;
     //
 
     void Awake()
@@ -25,6 +27,7 @@ public class ServiceHub : MonoBehaviour
         {
             Destroy(this);
             return;
+
         }
 
         DontDestroyOnLoad(_instance);
