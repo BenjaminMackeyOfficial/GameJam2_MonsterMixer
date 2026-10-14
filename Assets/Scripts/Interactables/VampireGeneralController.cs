@@ -26,6 +26,9 @@ public class VampireGeneralController : MonoBehaviour
     public VampireState state;
     public BarPosition barPosition;
 
+    [SerializeField] string eventPreheader;
+
+
     [Header("DIALOUGE OPTIONS")]
 
     [SerializeField] public string[] DialougeArivedAtBar;
@@ -71,6 +74,7 @@ public class VampireGeneralController : MonoBehaviour
 
         //any ui effects or ding sounds, perhaps an event
         if(DialougeArivedAtBar != null) ServiceHub.Instance.popupManager.CreateDialouge(DialougeArivedAtBar.Random(), gameObject);
+        EventBus.RequestEvent(eventPreheader + "Dialouge", true).Invoke();
         //
     }
     private void UpdateWaitTime()

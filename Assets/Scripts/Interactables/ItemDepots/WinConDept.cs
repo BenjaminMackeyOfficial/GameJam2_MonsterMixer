@@ -7,6 +7,8 @@ public class WinConDept : ItemDepot
         base.Start();
         EventBus.RequestEvent("GaveItemAndProgressed", true).ping += PositiveResponse;
         EventBus.RequestEvent("GaveUslessItem", true).ping += NegativeResponse;
+        EventBus.RequestEvent("PlayerWon", true).ping += WinningResponse;
+
         ServiceHub.Instance.roundProgressionManager.HandOverRequiredTags(wantedTags);
     }
     private bool RecieveKeyItem(ItemTags obj)
@@ -47,6 +49,10 @@ public class WinConDept : ItemDepot
     }
     private void NegativeResponse()
     {
-        ServiceHub.Instance.popupManager.CreateDialouge("...What the hell is this? I dont want this", gameObject);
+        ServiceHub.Instance.popupManager.CreateDialouge("...What the hell is this? You think this is going to end this? bring me 6 unique trinkets", gameObject);
+    }
+    private void WinningResponse()
+    {
+        ServiceHub.Instance.popupManager.CreateDialouge("Well that was it... you did it.. ..see you next year... heh", gameObject);
     }
 }

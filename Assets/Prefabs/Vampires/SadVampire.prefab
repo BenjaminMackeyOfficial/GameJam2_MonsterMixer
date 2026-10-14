@@ -113,11 +113,12 @@ MonoBehaviour:
   patienceLevel: 1
   maxWaitTimeToGetAchievment: 50
   state: 0
+  eventPreheader: Shy
   DialougeArivedAtBar:
   - "Hey\u2026 I\u2019m sorry \u2026 if it\u2019s not too much trouble could you
     maybe get me an Obituary, or a Lover\u2019s Lament\u2026What you don\u2019t know
     those \u2026..SSSIIIGGGHHHHHHHHH\u2026 figures \u2026 can I get Damp Hands of
-    Melancholy I see the ingredients behind the bar, Red Wine, spiced rum, Bitters
+    Melancholy I see the ingredients behind the bar, Red Wine, spiced Whiskey, Bitters
     and a splash of B negative. Please\u2026"
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
@@ -153,10 +154,10 @@ MonoBehaviour:
   enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
-  - _name: Wine
+  - _name: Vermouth
     _canHaveMultiple: 0
     _count: 0
-  - _name: Rum
+  - _name: Whiskey
     _canHaveMultiple: 0
     _count: 0
   - _name: Lemon

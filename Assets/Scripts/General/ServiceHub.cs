@@ -16,6 +16,10 @@ public class ServiceHub : MonoBehaviour
     public PopupManager popupManager;
     public TipsScoring tips;
     public CameraDataHolder cameras;
+    public AddAudio audioManager;
+    public MainMenuController mainMenuController;
+    public GameEndMenuController gameEndMenuController;
+    public PauseMenuController pauseMenuController;
     public Material generalOutlineMat;
     public SpriteRenderer spriteRendererDrink;
     //
@@ -27,14 +31,13 @@ public class ServiceHub : MonoBehaviour
         {
             Destroy(this);
             return;
-
         }
 
-        DontDestroyOnLoad(_instance);
+        //DontDestroyOnLoad(_instance);
 
         vampireManager.Initialize();
         gameState.Initialize();
         
-        EventBus.RequestEvent("RequestPlayMode", true).Invoke();
+        //EventBus.RequestEvent("RequestPlayMode", true).Invoke();
     }
 }

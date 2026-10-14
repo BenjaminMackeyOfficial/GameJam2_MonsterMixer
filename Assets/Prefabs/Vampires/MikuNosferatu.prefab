@@ -113,6 +113,7 @@ MonoBehaviour:
   patienceLevel: 1
   maxWaitTimeToGetAchievment: 300
   state: 0
+  eventPreheader: Miku
   DialougeArivedAtBar:
   - "Forgif me god hlaford ic wolde biddan \xFEe for drenc\u2026. I crave thy pardon,
     and do humbly beg forgiveness for my rude and thoughtless carriage toward thee\u2026  

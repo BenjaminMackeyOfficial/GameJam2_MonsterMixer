@@ -17,31 +17,32 @@ public class GameState : MonoBehaviour
     
     public void Initialize()
     {
+        gameplayState = GameplayState.Menu;
         EventBus.RequestEvent("RequestPlayMode", true).ping += AttemptEnterPlay;
         EventBus.RequestEvent("RequestMenuMode", true).ping += AttemptEnterMenu;
         EventBus.RequestEvent("RequestDownTimeMode", true).ping += AttemptEnterDownTime;
         EventBus.RequestEvent("RequestPauseMode", true).ping += AttemptEnterPause;
     }
 
-    private void AttemptEnterPlay()
+    public void AttemptEnterPlay()
     {
         if(gameplayState == GameplayState.Playing) return;
         gameplayState = GameplayState.Playing;
         EventBus.RequestEvent("EnterdPlayMode");
     }
-    private void AttemptEnterMenu()
+    public void AttemptEnterMenu()
     {
         if(gameplayState == GameplayState.Menu) return;
         gameplayState = GameplayState.Menu;
         EventBus.RequestEvent("EnterdMenuMode");
     }
-    private void AttemptEnterDownTime()
+    public void AttemptEnterDownTime()
     {
         if(gameplayState == GameplayState.DownTime) return;
         gameplayState = GameplayState.DownTime;
         EventBus.RequestEvent("EnterdDownTimeMode");
     }
-    private void AttemptEnterPause()
+    public void AttemptEnterPause()
     {
         if(gameplayState == GameplayState.Paused) return;
         gameplayState = GameplayState.Paused;

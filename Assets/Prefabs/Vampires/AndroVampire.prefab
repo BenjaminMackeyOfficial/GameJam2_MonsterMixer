@@ -145,6 +145,7 @@ MonoBehaviour:
   patienceLevel: 2
   maxWaitTimeToGetAchievment: 40
   state: 0
+  eventPreheader: Andro
   DialougeArivedAtBar:
   - "Hello Handsome \u2026. Be a sport and mix me a Tequila Bloodmoon. what is that
     you ask? Well it\u2019s like a tequila sunrise with a big splash of O positive...

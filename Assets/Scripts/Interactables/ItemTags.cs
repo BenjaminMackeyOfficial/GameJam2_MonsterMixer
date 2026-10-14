@@ -107,12 +107,14 @@ public class ItemTags : MonoBehaviour
             if(tag._canHaveMultiple == false) return false; // returning if trying to add single use tag
 
             tag._count += 1;
+            EventBus.RequestEvent("TagAltered", true).Invoke();
             return true;
         }
 
         _tags.Add(new Tag(tagName, canHaveMulti));
 
         if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
+        EventBus.RequestEvent("TagAltered", true).Invoke();
         return true;
     }
     public bool AddTag(Tag handedTag)
@@ -124,11 +126,13 @@ public class ItemTags : MonoBehaviour
             if(tag._canHaveMultiple == false) return false; // returning if trying to add single use tag
 
             tag._count += handedTag._count;
+            EventBus.RequestEvent("TagAltered", true).Invoke();
             return true;
         }
         _tags.Add(handedTag);
 
         if (DoIQualifyForDrinkPng(this)) ConvertToDrink();
+        EventBus.RequestEvent("TagAltered", true).Invoke();
         return true;
     }
     public void RemoveTag() // add iff nessecary, we flyin through!!

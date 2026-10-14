@@ -87,7 +87,7 @@ public class PopupDialouge : PopupBox
         }
         else selfCanvasPlane.worldCamera = ServiceHub.Instance.cameras.mainCamera;
 
-
+        transform.SetParent(attatchedObj.transform);
         if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
         typeWriter = StartCoroutine(TypewriterEffect(includes));
     }
@@ -97,6 +97,9 @@ public class PopupDialouge : PopupBox
         base.ShowCanvas(includes);//doesnt do anything
 
         selfCanvasPlane.worldCamera = ServiceHub.Instance.cameras.mainCamera;
+
+        transform.SetParent(attatchedObj.transform);
+
         if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
         typeWriter = StartCoroutine(TypewriterEffect(includes));
     }

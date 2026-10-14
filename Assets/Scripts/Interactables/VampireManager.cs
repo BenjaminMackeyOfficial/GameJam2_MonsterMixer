@@ -23,7 +23,6 @@ public class VampireManager : MonoBehaviour
     public void Initialize()
     {
         lastSpawned = Time.time - (SpawnRate * 0.5f);
-        repeatCount = (int)(vampirePrefabs.Length * 0.7f);
         barPositions = new BarPosition[barPositionGameObjects.Length];
         for (int i = 0; i < barPositions.Length; i++)
         {
@@ -47,18 +46,14 @@ public class VampireManager : MonoBehaviour
 
     private GameObject GetUnusedVampPrefab()
     {
-        if (vampirePrefabs == null || vampirePrefabs.Length == 0)
-            return null;
+        if (vampirePrefabs == null || vampirePrefabs.Length == 0) return null;
 
         foreach (GameObject item in vampirePrefabs)
         {
-            if (item == null || prevUsedVamps.Contains(item))
-                continue;
+            if (item == null || prevUsedVamps.Contains(item)) continue;
 
             prevUsedVamps.Add(item);
-
-            while (prevUsedVamps.Count > repeatCount)
-                prevUsedVamps.RemoveAt(0);
+            if(prevUsedVamps.Count > repeatCount) prevUsedVamps.RemoveAt(0);
 
             return item;
         }
@@ -72,11 +67,12 @@ public class VampireManager : MonoBehaviour
 
     private void TrySpawnVamp()
     {
-        GameObject vamp = GetUnusedVampPrefab();
         BarPosition pos = GetEmptyBarPos();
+        if (pos == null) return;
 
+        GameObject vamp = GetUnusedVampPrefab();
         if(vamp == null) return;
-        if(pos == null) return;
+        
         
         vamp = Instantiate(vamp);
         VampireGeneralController vampController = vamp.GetComponent<VampireGeneralController>();

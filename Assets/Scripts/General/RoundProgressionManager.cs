@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,6 +36,18 @@ public class RoundProgressionManager : MonoBehaviour
         {
             EventBus.RequestEvent("GaveUslessItem", true).Invoke();
         }
+
         countSinceLastTime = haveRecieved.Count;
+        Debug.Log(countSinceLastTime);
+        Debug.Log(totalLookingFor.Length);
+        if (countSinceLastTime >= totalLookingFor.Length) StartCoroutine(VictorySpeach());
+    }
+
+    private IEnumerator VictorySpeach()
+    {
+        Debug.Log("aaa");
+        ServiceHub.Instance.gameState.AttemptEnterDownTime();
+        yield return new WaitForSeconds(5);
+        EventBus.RequestEvent("PlayerWon", true).Invoke();
     }
 }

@@ -1,9 +1,11 @@
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class TipsScoring : MonoBehaviour
 {
     public int totalTips {get; private set;} = 0;
+    [SerializeField] TextMeshProUGUI tipsLabel;
 
     public void Start()
     {
@@ -29,10 +31,15 @@ public class TipsScoring : MonoBehaviour
     private void TipAddEffect() //whatever this needs to be
     {
         Debug.Log("You're at " + totalTips + " Tips!");
+        tipsLabel.text = "Tips: " + totalTips;
     }
     private void BonusIcon()
     {
         
     }
-    
+    private void Reset()
+    {
+        totalTips = 0;
+    }
+
 }

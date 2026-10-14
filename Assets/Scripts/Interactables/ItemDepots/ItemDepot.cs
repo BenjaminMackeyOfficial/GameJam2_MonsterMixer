@@ -33,7 +33,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     [SerializeField] protected float timeToProscess;
     //
 
-    public void Click(GameObject heldItem, bool leftHand) //true for left, false for right
+    public virtual void Click(GameObject heldItem, bool leftHand) //true for left, false for right
     {
         string eventName = "GiveToRightHand";
         if(leftHand) eventName = "GiveToLeftHand";//event stuff

@@ -113,9 +113,10 @@ MonoBehaviour:
   patienceLevel: 3
   maxWaitTimeToGetAchievment: 40
   state: 0
+  eventPreheader: Craig
   DialougeArivedAtBar:
   - "RRRRRRRRR\u2026Wannnnnnnttttt Whiskeeeeeyy and \u2026.LIMMMMEEEEEEEE\u2026\u2026\u2026.with
-    Tangy A negativeeeeee"
+    Tangy A positiiiiveeeeee"
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "Chasing brains usssed to beee easyyy\u2026\u2026  now everyone eeat healthy
@@ -153,7 +154,7 @@ MonoBehaviour:
   - _name: Lime
     _canHaveMultiple: 0
     _count: 0
-  - _name: A-
+  - _name: A+
     _canHaveMultiple: 0
     _count: 0
   - _name: Glass

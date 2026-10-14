@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         yLookAngle = Mathf.Clamp(yLookAngle + lookInput.y * pitchLookSensitivity * Time.deltaTime, -maxLookPitch, maxLookPitch);
         xLookAngle -= lookInput.x * yawLookSensitivity * Time.deltaTime;
-
+        if (ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Menu) xLookAngle = math.clamp(xLookAngle, -40, 40);
         lookRot = Quaternion.Euler(
             yLookAngle,
             xLookAngle,
@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (stateManager.dead) return;
+        if (stateManager.dead || ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Menu || ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Paused) return;
         Vector3 ground= stateManager.checkGround(maxSlopeAngle);
 
         GetReqMoveDir();

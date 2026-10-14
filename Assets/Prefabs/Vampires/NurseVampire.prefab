@@ -113,6 +113,7 @@ MonoBehaviour:
   patienceLevel: 1
   maxWaitTimeToGetAchievment: 30
   state: 0
+  eventPreheader: Nurse
   DialougeArivedAtBar:
   - "Like OMG That Ponytail Nosferatu Goth is like sooo old.  I could retire on his
     co-pay\u2026 Canya get me like a pink Cosmo with a little B positive?"
@@ -157,6 +158,9 @@ MonoBehaviour:
     _canHaveMultiple: 0
     _count: 0
   - _name: B+
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Glass
     _canHaveMultiple: 0
     _count: 0
   giveTags: []
