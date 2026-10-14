@@ -2588,6 +2588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AddBackgroundAudio
   musicSource: {fileID: 1885005421}
   backgroundTrack: {fileID: 8300000, guid: d2eb4a0577875b041b5f6b20e1e07208, type: 3}
+  MorningEscape: {fileID: 8300000, guid: 7faabd12e5a80af4488821d1cf7ceef7, type: 3}
 --- !u!4 &1885005420
 Transform:
   m_ObjectHideFlags: 0
