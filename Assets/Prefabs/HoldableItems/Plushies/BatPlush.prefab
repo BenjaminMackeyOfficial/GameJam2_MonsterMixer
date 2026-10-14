@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2795182433327787798
+--- !u!1 &1856862053833855955
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1436315584887655663}
-  - component: {fileID: 7779275883774380740}
-  - component: {fileID: 6151358067497417580}
+  - component: {fileID: 5075630768273663124}
+  - component: {fileID: 519383896659449368}
+  - component: {fileID: 3665843851560053060}
   m_Layer: 0
-  m_Name: Blood0+
+  m_Name: BatPlush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1436315584887655663
+--- !u!4 &5075630768273663124
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795182433327787798}
+  m_GameObject: {fileID: 1856862053833855955}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.13860986, z: -0, w: 0.9903471}
-  m_LocalPosition: {x: 0.61901855, y: 1.1453438, z: 0.5363083}
-  m_LocalScale: {x: 0.017499998, y: 0.0175, z: 0.017499998}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0175, y: 0.0175, z: 0.0175}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -15.935, z: 0}
---- !u!212 &7779275883774380740
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &519383896659449368
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795182433327787798}
+  m_GameObject: {fileID: 1856862053833855955}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,29 +82,29 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 71719b75ac2827a49aafa5121bacc340, type: 3}
+  m_Sprite: {fileID: -1238396888, guid: 535751d97481d3448b2226b3445a7bb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 128, y: 128}
+  m_Size: {x: 13, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &6151358067497417580
+--- !u!114 &3665843851560053060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795182433327787798}
+  m_GameObject: {fileID: 1856862053833855955}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 502832e2b5f484d42b7a74018b6ee65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTags
   _tags:
-  - _name: 0+
+  - _name: Bat
     _canHaveMultiple: 0
     _count: 0
