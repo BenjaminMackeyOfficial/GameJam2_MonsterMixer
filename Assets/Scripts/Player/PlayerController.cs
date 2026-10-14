@@ -50,12 +50,17 @@ public class PlayerController : MonoBehaviour
     //
 
     [SerializeField] GameObject[] objs;
+
+    //interactions//
+    private Interactor interactor;
+    //
     
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         cam = transform.Find("Camera").gameObject;
         stateManager = GetComponent<PlayerStateManager>();
+        interactor = this.GetComponent<Interactor>();
         if (stateManager == null) stateManager = gameObject.AddComponent<PlayerStateManager>();
 
         if(inputActions == null) this.enabled = false;
@@ -64,6 +69,12 @@ public class PlayerController : MonoBehaviour
         //jump = inputActions.FindAction("Player/Jump");
         look = inputActions.FindAction("Player/Look");
         sprint = inputActions.FindAction("Player/Sprint");
+
+        inputActions.FindAction("Player/LeftHandInteract").started += _ => interactor.LeftClick();
+        inputActions.FindAction("Player/RightHandInteract").started += _ => interactor.RightClick();
+
+        inputActions.FindAction("Player/LeftHandInteract").canceled += _ => interactor.LeftUnClick();
+        inputActions.FindAction("Player/RightHandInteract").canceled += _ => interactor.RightUnClick();
 
         heightFromCent =  Vector3.up * (transform.localScale.y / 4);
 
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         yLookAngle = Mathf.Clamp(yLookAngle + lookInput.y * pitchLookSensitivity * Time.deltaTime, -maxLookPitch, maxLookPitch);
         xLookAngle -= lookInput.x * yawLookSensitivity * Time.deltaTime;
-
+        if (ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Menu) xLookAngle = math.clamp(xLookAngle, -40, 40);
         lookRot = Quaternion.Euler(
             yLookAngle,
             xLookAngle,
@@ -152,9 +163,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        prog = math.lerp(prog, targProg, 0.1f);
-        camCamera.fieldOfView = Mathf.Lerp(FOV, zoomInFov, prog);
-
         rotateForLook();
         cam.transform.rotation = lookRot;
     }
@@ -179,11 +187,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         camCamera = cam.GetComponent<Camera>();
+
     }
 
     void FixedUpdate()
     {
-        if (stateManager.dead) return;
+        if (stateManager.dead || ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Menu || ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Paused) return;
         Vector3 ground= stateManager.checkGround(maxSlopeAngle);
 
         GetReqMoveDir();
