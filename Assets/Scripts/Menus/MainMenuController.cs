@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*  Removing cause this was all very quick shitty spaghetti code
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] GameObject Sign;
@@ -56,5 +56,35 @@ public class MainMenuController : MonoBehaviour
             notepad.transform.position = Vector3.Lerp(notepad.transform.position, notepadDown, Time.deltaTime);
             if (destroyIn > 4) gameObject.SetActive(false);
         }
+    }
+}
+*/
+
+public class MainMenuController : MonoBehaviour
+{
+    [SerializeField] GameObject Sign;
+    [SerializeField] GameObject notepad;
+    [SerializeField] Canvas canvas;
+
+    [SerializeField] Animator animator;
+
+    void Start()
+    {
+
+    }
+    public void LoadMainMenu()
+    {
+        
+    }
+
+    public void RunStartSequence()//enables the animator
+    {
+        animator.enabled = true;
+        canvas.enabled = true;
+    }
+    public void StopStartSequence()
+    {
+        animator.enabled = false;
+        canvas.enabled = false;
     }
 }

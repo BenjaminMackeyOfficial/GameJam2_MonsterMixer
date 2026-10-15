@@ -33,7 +33,7 @@ public class ServiceHub : MonoBehaviour
             return;
         }
 
-        //DontDestroyOnLoad(_instance);
+        DontDestroyOnLoad(_instance);
 
         vampireManager.Initialize();
         gameState.Initialize();
