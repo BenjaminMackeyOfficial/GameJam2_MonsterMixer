@@ -16,11 +16,11 @@ public class VampireScorer : ItemDepot
     }
     private bool Score(ItemTags obj)
     {
-        float score = 100;
+        float score = 50;
         bool perfect = true;
         if(controller.waitTime < controller.maxWaitTimeToGetAchievment)
         {
-            score += controller.maxWaitTimeToGetAchievment - controller.waitTime;
+            
         }
         else
         {
@@ -28,12 +28,13 @@ public class VampireScorer : ItemDepot
             score -= controller.waitTime * controller.patienceLevel;
         }
 
+        float reducedPerMissedTag = 100 / (wantedTags.Length + 0.001f);
         foreach (Tag item in wantedTags)
         {
             if(obj.HasTag(item._name) == null) //checking all the tags in the wanted tag list
             {
                 perfect = false;
-                score -= 5;
+                score -= reducedPerMissedTag;
             }
         }
         foreach (Tag item in obj.GetAllTags())
@@ -45,7 +46,7 @@ public class VampireScorer : ItemDepot
             }
             if(match == false)
             {
-                score -= 5;
+                score -= reducedPerMissedTag;
                 perfect = false;
             }
         }

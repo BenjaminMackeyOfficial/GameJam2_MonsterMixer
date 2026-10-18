@@ -49,8 +49,11 @@ public class VampireGeneralController : MonoBehaviour
         EventBus.RequestEvent("EnterdDownTimeMode", true).ping += WalkToHome;
     }
 
+    bool scored = false;
     public void Scored(float givenScore, bool isPerfect)
     {
+        if (scored) return;
+        scored = true;
         Debug.Log("Score: " + givenScore + " | perfect: " + isPerfect);
 
         if(isPerfect) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarPerfect.Random(), gameObject);

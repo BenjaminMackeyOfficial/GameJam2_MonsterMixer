@@ -140,6 +140,13 @@ public class GameEndMenuController : MonoBehaviour
             tipsScore.text = "Score: " + i;
             yield return null;
         }
+        if (ServiceHub.Instance.tips.totalTips > 0) ServiceHub.Instance.audioManager.OnCheers();
+        else
+        {
+            ServiceHub.Instance.audioManager.OnLoseSound();
+            
+        }
+
         tipsScore.text = "Score: " + finalNum;
         continueText.SetActive(true);
 

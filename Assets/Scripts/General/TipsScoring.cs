@@ -15,7 +15,7 @@ public class TipsScoring : MonoBehaviour // should be called scoring... a little
     
     public void AddTipAmount(int ammount)
     {
-        totalTips += math.clamp(ammount, 0, int.MaxValue);
+        totalTips += math.clamp(ammount, int.MinValue, int.MaxValue);
         TipAddEffect();
     }
     public void AddTipAmount(float ammount)

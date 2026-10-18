@@ -22869,6 +22869,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 631963691327038963, guid: 738b2f94a3b0675409b93fddda8efb83, type: 3}
+      propertyPath: loseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8cc45c3d45bd4fe4e8614a4da297c972, type: 3}
+    - target: {fileID: 631963691327038963, guid: 738b2f94a3b0675409b93fddda8efb83, type: 3}
       propertyPath: GlassClinks
       value: 
       objectReference: {fileID: 8300000, guid: d839e4d5d8081ad4ea2bd041936b52e2, type: 3}
@@ -27913,8 +27917,8 @@ Transform:
   m_GameObject: {fileID: 1762032588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 431.7316, y: 34.842, z: 93.701}
-  m_LocalScale: {x: 4.6571627, y: 1, z: 1}
+  m_LocalPosition: {x: 431.663, y: 34.8338, z: 93.701}
+  m_LocalScale: {x: 5.041932, y: 0.98354554, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -41759,7 +41763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4369794684412774549, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: Bouncyness
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4369794684412774549, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: yawLookSensitivity
@@ -41769,17 +41773,25 @@ PrefabInstance:
       propertyPath: pitchLookSensitivity
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 5456186933199736504, guid: d2ce00da3ae5db243936870505244191, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456186933199736504, guid: d2ce00da3ae5db243936870505244191, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 6c9634fdbac70354aa6d8e1aee65458d, type: 2}
     - target: {fileID: 5636430802070836539, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.973999
       objectReference: {fileID: 0}
     - target: {fileID: 5636430802070836539, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5259972
+      value: 1.602
       objectReference: {fileID: 0}
     - target: {fileID: 5636430802070836539, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.546997
+      value: -13.503
       objectReference: {fileID: 0}
     - target: {fileID: 5636430802070836539, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: m_LocalRotation.w
@@ -41816,6 +41828,14 @@ PrefabInstance:
     - target: {fileID: 7542131904079022962, guid: d2ce00da3ae5db243936870505244191, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7986912924651846423, guid: d2ce00da3ae5db243936870505244191, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7986912924651846423, guid: d2ce00da3ae5db243936870505244191, type: 3}
+      propertyPath: m_LinearDamping
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
