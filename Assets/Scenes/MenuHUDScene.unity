@@ -59523,7 +59523,7 @@ MonoBehaviour:
   - Over here to your left is the bar stand. That is where you will be mixing your
     drinks for customers.
   - 'Each type of ingredient has a colour code, <color="red"> Blood is Red, <color="blue">  
-    Alcohol is Blue, <color=#00FFF> Glasses are Teal, <color="yellow"> Lemons are
+    Alcohol is Blue, <color=#00FFFF> Glasses are Cyan, <color="yellow"> Lemons are
     yellow, <color="green"> and Limes are Green. '
   - 'Keep an eye on patrons when they are ordering their drinks. '
   - These colours may come up to help you discern what your patrons are looking for.
