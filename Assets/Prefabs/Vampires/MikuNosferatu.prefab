@@ -169,7 +169,7 @@ MonoBehaviour:
   - _name: Lime
     _canHaveMultiple: 0
     _count: 0
-  - _name: 0+
+  - _name: 0-
     _canHaveMultiple: 0
     _count: 0
   - _name: Lemon
