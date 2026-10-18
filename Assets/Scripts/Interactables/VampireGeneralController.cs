@@ -81,7 +81,7 @@ public class VampireGeneralController : MonoBehaviour
 
         //any ui effects or ding sounds, perhaps an event
         if(DialougeArivedAtBar != null) ServiceHub.Instance.popupManager.CreateDialouge(DialougeArivedAtBar.Random(), gameObject);
-        EventBus.RequestEvent(eventPreheader + "Dialouge", true).Invoke();
+        //EventBus.RequestEvent(eventPreheader + "Dialouge", true).Invoke(); old voice acting
         //
     }
     private void UpdateWaitTime()

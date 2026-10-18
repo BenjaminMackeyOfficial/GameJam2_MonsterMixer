@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8482545616478944713}
   - component: {fileID: 8424646460430780785}
   - component: {fileID: 9105928500097999664}
+  - component: {fileID: 8002480768430135881}
   m_Layer: 0
   m_Name: SadVampire
   m_TagString: Untagged
@@ -203,3 +204,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8002480768430135881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177242449899258787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: 8c66d5a4d49b3bf42870bfce3b41fbd4, type: 3}

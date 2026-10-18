@@ -61968,6 +61968,7 @@ GameObject:
   - component: {fileID: 6237117671287542139}
   - component: {fileID: 341562404553627114}
   - component: {fileID: 9222691059785305130}
+  - component: {fileID: 9222691059785305131}
   m_Layer: 0
   m_Name: WinConDepot
   m_TagString: Untagged
@@ -61988,6 +61989,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FaceThePlayer
   Offset: {x: 0, y: 0, z: 0}
+--- !u!114 &9222691059785305131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222691059785305129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: d9a41f9efd1f3d64cb9a8506ba8118a8, type: 3}
 --- !u!4 &9223112299258866595
 Transform:
   m_ObjectHideFlags: 0

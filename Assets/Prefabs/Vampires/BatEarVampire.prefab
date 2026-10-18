@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5186290787743790253}
   - component: {fileID: -8199644707037326699}
   - component: {fileID: 5651230876736576800}
+  - component: {fileID: 62478807917272061}
   m_Layer: 0
   m_Name: BatEarVampire
   m_TagString: Untagged
@@ -194,3 +195,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &62478807917272061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474969110352684941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: d38906e4286473c409e56830cb476e34, type: 3}

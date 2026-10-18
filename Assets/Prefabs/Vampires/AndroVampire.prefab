@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8602116215696491891}
   - component: {fileID: -6430832523355017308}
   - component: {fileID: -3235764563276027855}
+  - component: {fileID: -746379011196682387}
   m_Layer: 0
   m_Name: AndroVampire
   m_TagString: Untagged
@@ -203,3 +204,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-746379011196682387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646558515360644724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: c72f3e86eb347194dbe4f7f90c727e1e, type: 3}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 542758074781988030}
   - component: {fileID: -5387772041345180405}
   - component: {fileID: 5413214691402542820}
+  - component: {fileID: -5001256959797352073}
   m_Layer: 0
   m_Name: MikuNosferatu
   m_TagString: Untagged
@@ -208,3 +209,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5001256959797352073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3728614183372725850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: 49c4b8c36fdce6b4a9fa515ae7b722e9, type: 3}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1106879373479872099}
   - component: {fileID: -72916551594350320}
   - component: {fileID: 7090852553518422510}
+  - component: {fileID: 6277794617185271328}
   m_Layer: 0
   m_Name: NurseVampire
   m_TagString: Untagged
@@ -200,3 +201,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6277794617185271328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666818343110762617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: 5a82d273a4410ee47a507ba8fae2c467, type: 3}

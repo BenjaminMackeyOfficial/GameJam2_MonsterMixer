@@ -16,6 +16,8 @@ public class PopupDialouge : PopupBox
     [SerializeField] float generalScale;
 
     private Vector2 targSize = Vector2.zero;
+    private AudioSource audioPlayer;
+    private AudioClip audioClip;
 
     private Vector3 GetPositionAbove(GameObject obj, Vector3 offset)
     {
@@ -59,7 +61,8 @@ public class PopupDialouge : PopupBox
     }
     public void Initialize(GameObject givenAttatchedObj)
     {
-        if(generalScale <= 0.001f)generalScale = 1f;
+        audioPlayer = GetComponent<AudioSource>();
+        if (generalScale <= 0.001f)generalScale = 1f;
 
         attatchedObj = givenAttatchedObj;
         transform.position = GetPositionAbove(attatchedObj,Vector3.up * (generalScale * 2));
@@ -179,6 +182,12 @@ public class PopupDialouge : PopupBox
         text.text = "";
         isTypewriterActive = true;
 
+        if (audioClip == null && attatchedObj.TryGetComponent<AudioSoundDataBin>(out AudioSoundDataBin bin))
+        {
+            Debug.Log("clip found");
+            audioClip = bin.clip;
+        }
+
         float locSpeed = typerwriterSpeed;
 
         text.fontSize = generalScale * 0.3f;
@@ -230,6 +239,7 @@ public class PopupDialouge : PopupBox
             }
 
             text.text += letter;
+            if(audioClip!= null && text.text.Length % 3 == 0)audioPlayer.PlayOneShot(audioClip);
 
             ResizeCanvas();
 
