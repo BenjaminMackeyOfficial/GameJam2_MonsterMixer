@@ -59522,21 +59522,21 @@ MonoBehaviour:
     to keep in mind when making drinks for our patrons. "
   - Over here to your left is the bar stand. That is where you will be mixing your
     drinks for customers.
-  - Each type of ingredient has a colour code, <color="red"> Blood is Red, <color="blue">  
-    Alcohol is Blue <color=#00FFFF> Glasses are Teal, <color="yellow"> Lemons are
-    yellow <color="green"> and Limes are Green
-  - Keep an eye when patrons are ordering their drinks.
+  - 'Each type of ingredient has a colour code, <color="red"> Blood is Red, <color="blue">  
+    Alcohol is Blue, <color=#00FFF> Glasses are Teal, <color="yellow"> Lemons are
+    yellow, <color="green"> and Limes are Green. '
+  - 'Keep an eye on patrons when they are ordering their drinks. '
   - These colours may come up to help you discern what your patrons are looking for.
   - 'All you need to do is grab the ingredients and place them on middle cutting
     board. '
-  - 'This will mix the drink for you! Once your done mixing you can give that drink
-    to the customer!  '
+  - 'This will mix the drink for you! Once you''re done mixing you can give that
+    drink to the customer!  '
   - '... '
   - Before you get started for your shift there's a couple of tips I would like to
     share with you.
   - Press R/Shift to pull up your recipe card.
   - 'This may help you make drinks that you may not have heard of before.  '
-  - 'Keep in mind that these recipes<color="red">  DO NOT INCLUDE<color="white"> 
+  - 'Keep in mind that these recipes<color="red">  DO NOT INCLUDE<color="black"> 
     a customer''s blood type preference. That is something you will have to remember
     yourself. '
   - 'The order of what ingredient goes into a drink does not matter currently. The
@@ -59545,7 +59545,7 @@ MonoBehaviour:
   - That's just a rumor though. I would love to get my hands on a customer offering
     ; )
   - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFFF>
-    Glass <color="white">! '
+    Glass <color="black">! '
   - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFF>
     Glass <color="white">! '
 --- !u!33 &6244326180940898015
