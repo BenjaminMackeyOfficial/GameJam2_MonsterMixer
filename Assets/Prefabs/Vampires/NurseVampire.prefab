@@ -115,8 +115,7 @@ MonoBehaviour:
   state: 0
   eventPreheader: Nurse
   DialougeArivedAtBar:
-  - "Like OMG That Ponytail Nosferatu Goth is like sooo old.  I could retire on his
-    co-pay\u2026 Canya get me like a pink Cosmo with a little B positive?"
+  - Vodka lime B+
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "So like I\u2019m not really a huge bimbo\u2026 just a moderate one\u2026 giggle.. 

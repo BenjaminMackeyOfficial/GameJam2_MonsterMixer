@@ -10,7 +10,10 @@ public class RoundProgressionManager : MonoBehaviour
     {  
         
     }
-
+    void Start()
+    {
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetData;
+    }
     public void HandOverRequiredTags(Tag[] tags)
     {
         if(totalLookingFor == null) totalLookingFor = tags;
@@ -41,10 +44,12 @@ public class RoundProgressionManager : MonoBehaviour
         Debug.Log(totalLookingFor.Length);
         if (countSinceLastTime >= 6) StartCoroutine(VictorySpeach());
     }
-
+    private void ResetData()
+    {
+        haveRecieved = new List<Tag>();
+    }
     private IEnumerator VictorySpeach()
     {
-        Debug.Log("aaa");
         ServiceHub.Instance.gameState.AttemptEnterDownTime();
         yield return new WaitForSeconds(5);
         EventBus.RequestEvent("PlayerWon", true).Invoke();

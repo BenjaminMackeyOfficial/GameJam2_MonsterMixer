@@ -85,6 +85,10 @@ public class VampireManager : MonoBehaviour
         lastSpawned = Time.time;
     }
 
+    void ResetData()
+    {
+        prevUsedVamps = new List<GameObject>();
+    }
 
     void Update()
     {

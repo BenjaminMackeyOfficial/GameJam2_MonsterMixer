@@ -22,30 +22,34 @@ public class GameState : MonoBehaviour
         EventBus.RequestEvent("RequestDownTimeMode", true).ping += AttemptEnterDownTime;
         EventBus.RequestEvent("RequestPauseMode", true).ping += AttemptEnterPause;
     }
+    public void Start()
+    {
+        EventBus.RequestEvent("LevelReseting", true).ping += AttemptEnterMenu;
+    }
 
     public void AttemptEnterPlay()
     {
         if(gameplayState == GameplayState.Playing) return;
         gameplayState = GameplayState.Playing;
-        EventBus.RequestEvent("EnterdPlayMode");
+        EventBus.RequestEvent("EnterdPlayMode", true).Invoke();
     }
     public void AttemptEnterMenu()
     {
         if(gameplayState == GameplayState.Menu) return;
         gameplayState = GameplayState.Menu;
-        EventBus.RequestEvent("EnterdMenuMode");
+        EventBus.RequestEvent("EnterdMenuMode", true).Invoke();
     }
     public void AttemptEnterDownTime()
     {
         if(gameplayState == GameplayState.DownTime) return;
         gameplayState = GameplayState.DownTime;
-        EventBus.RequestEvent("EnterdDownTimeMode");
+        EventBus.RequestEvent("EnterdDownTimeMode", true).Invoke();
     }
     public void AttemptEnterPause()
     {
         if(gameplayState == GameplayState.Paused) return;
         gameplayState = GameplayState.Paused;
-        EventBus.RequestEvent("EnterdPauseMode");
+        EventBus.RequestEvent("EnterdPauseMode", true).Invoke();
     }
 
 }

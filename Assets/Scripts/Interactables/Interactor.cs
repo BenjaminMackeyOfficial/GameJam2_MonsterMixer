@@ -18,8 +18,7 @@ public class Interactor : MonoBehaviour
     private GameObject holdingInRightHand;
     //
 
-    //
-    private PlayerController controller;
+
     //
 
     //
@@ -46,6 +45,7 @@ public class Interactor : MonoBehaviour
 
         EventBus.RequestEvent("GiveToLeftHand", true).ping += LeftHandRecieve;
         EventBus.RequestEvent("GiveToRightHand", true).ping += RightHandRecieve;
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetInfo;
     }
 
     void Update()
@@ -72,6 +72,13 @@ public class Interactor : MonoBehaviour
             prevInteract.Hover();
         }
         
+    }
+    private void ResetInfo()
+    {
+        holdingInLeftHand = null;
+        holdingInRightHand = null;
+        prevInteract = null;
+        prevHovered = null;
     }
     private void LeftHandRecieve()
     {

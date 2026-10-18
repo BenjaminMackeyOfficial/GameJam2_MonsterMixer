@@ -68,23 +68,58 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    private Vector3 signStartPos;
+    private Vector3 notepadStartPos;
+
+    public float introCutsceneLength;
     void Start()
     {
-
+        introCutsceneLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        signStartPos = Sign.transform.position;
+        notepadStartPos = notepad.transform.position;
+        EventBus.RequestEvent("LevelReseting", true).ping += RunStartSequenceNoTitle;
     }
     public void LoadMainMenu()
     {
-        
+        notepad.transform.position = notepadStartPos;
+        Sign.transform.position = signStartPos;
+        RunStartSequence();
     }
-
-    public void RunStartSequence()//enables the animator
+    public void HideMainMenu()
     {
+        StartCoroutine(HideMainMenuAssets());
+    }
+    public void RunStartSequence()
+    {
+        canvas.enabled = true;
+        animator.enabled = true;
+    }
+    public void RunStartSequenceNoTitle()
+    {
+        notepad.transform.position = notepadStartPos;
+        Sign.transform.position = signStartPos;
+
         animator.enabled = true;
         canvas.enabled = true;
+        float targTime = animator.runtimeAnimatorController.animationClips[0].events[0].time / animator.runtimeAnimatorController.animationClips[0].length;
+        animator.Play("InitialOpenCutscene", 0, targTime);
     }
     public void StopStartSequence()
     {
         animator.enabled = false;
         canvas.enabled = false;
+        ServiceHub.Instance.roundManager.CutsceneOverBeginOtherSystems();
     }
+    private IEnumerator HideMainMenuAssets()
+    {
+        Vector3 signUp = Sign.transform.position + Vector3.up * 7;
+        Vector3 notepadDown = notepad.transform.position + Vector3.down * 4;
+        for (float i = 0; i < 5; i += Time.deltaTime)
+        {
+            Sign.transform.position = Vector3.MoveTowards(Sign.transform.position, signUp, Time.deltaTime);
+            notepad.transform.position = Vector3.MoveTowards(notepad.transform.position, notepadDown, Time.deltaTime);
+            yield return null;
+        }
+    }
+    private void Nothing() { } //so timeline events can do nothing and not error
 }

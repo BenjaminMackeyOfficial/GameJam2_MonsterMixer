@@ -8,8 +8,14 @@ public class WinConDept : ItemDepot
         EventBus.RequestEvent("GaveItemAndProgressed", true).ping += PositiveResponse;
         EventBus.RequestEvent("GaveUslessItem", true).ping += NegativeResponse;
         EventBus.RequestEvent("PlayerWon", true).ping += WinningResponse;
-
+        EventBus.RequestEvent("StartTutorial", true).ping += ProgressDialouge;
         ServiceHub.Instance.roundProgressionManager.HandOverRequiredTags(wantedTags);
+
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetData;
+    }
+    private void ResetData()
+    {
+        index = -1;
     }
     private bool RecieveKeyItem(ItemTags obj)
     {
@@ -29,6 +35,26 @@ public class WinConDept : ItemDepot
         return false;
     }
 
+    private int index = -1;
+    [Header("TutorialText")]
+    [SerializeField] string[] text;
+    public void ProgressDialouge()
+    {
+        index += 1;
+        if (index >= text.Length) return;
+        else if (index == text.Length - 1)
+        {
+            EventBus.RequestEvent("StartGame", true).Invoke();
+            //EventBus.RequestEvent("PlayerWon", true).Invoke(); // <--temp, this is jsut for testing
+            ServiceHub.Instance.popupManager.CreateDialouge("", gameObject);
+        }
+        else ServiceHub.Instance.popupManager.CreateDialouge(text[index], gameObject, false, true);
+    }
+    public override void Click(GameObject heldItem, bool leftHand)
+    {
+        base.Click(heldItem,leftHand);
+        ProgressDialouge();
+    }
     public override GameObject TakeItem(GameObject item)
     {
         ItemTags tags = item.GetComponent<ItemTags>();
@@ -42,7 +68,6 @@ public class WinConDept : ItemDepot
         Destroy(item);
         return null;
     }
-
     private void PositiveResponse()
     {
         ServiceHub.Instance.popupManager.CreateDialouge("Yeah... thisll work", gameObject);

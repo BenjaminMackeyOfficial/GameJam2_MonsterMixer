@@ -17,13 +17,15 @@ public class ServiceHub : MonoBehaviour
     public TipsScoring tips;
     public CameraDataHolder cameras;
     public AddAudio audioManager;
+    public BackgroundMusicManager backgroundMusicManager;
     public MainMenuController mainMenuController;
     public GameEndMenuController gameEndMenuController;
     public PauseMenuController pauseMenuController;
     public Material generalOutlineMat;
     public SpriteRenderer spriteRendererDrink;
+    public RoundManager roundManager;
+    public FileManager fileManager;
     //
-
     void Awake()
     {
         if(_instance == null) _instance = this;

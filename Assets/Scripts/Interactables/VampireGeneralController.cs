@@ -45,6 +45,8 @@ public class VampireGeneralController : MonoBehaviour
         if(DialougeLeavingBarUpset == null || DialougeLeavingBarUpset.Length == 0) DialougeLeavingBarUpset = new string[] { "..." };
         if(DialougeLeavingBarHappy == null || DialougeLeavingBarHappy.Length == 0) DialougeLeavingBarHappy = new string[] { "..." };
         if(DialougeLeavingBarPerfect == null || DialougeLeavingBarPerfect.Length == 0) DialougeLeavingBarPerfect = new string[] { "..." };
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetData;
+        EventBus.RequestEvent("EnterdDownTimeMode", true).ping += WalkToHome;
     }
 
     public void Scored(float givenScore, bool isPerfect)
@@ -52,7 +54,7 @@ public class VampireGeneralController : MonoBehaviour
         Debug.Log("Score: " + givenScore + " | perfect: " + isPerfect);
 
         if(isPerfect) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarPerfect.Random(), gameObject);
-        else if(givenScore > 70) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarHappy.Random(), gameObject);
+        else if(givenScore > 80) ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarHappy.Random(), gameObject);
         else ServiceHub.Instance.popupManager.CreateDialouge(DialougeLeavingBarUpset.Random(), gameObject);
 
         barPosition.occupied = false;
@@ -61,6 +63,12 @@ public class VampireGeneralController : MonoBehaviour
         WalkTo(ReturnPoint);
     }
 
+    private void WalkToHome()
+    {
+        barPosition.occupied = false;
+        state = VampireState.Exiting;
+        WalkTo(ReturnPoint);
+    }
     public void WalkTo(Vector3 pos)
     {
         currentTargetPos = pos;
@@ -79,6 +87,10 @@ public class VampireGeneralController : MonoBehaviour
     private void UpdateWaitTime()
     {
         waitTime+= Time.deltaTime;
+    }
+    private void ResetData()
+    {
+        Destroy(this);
     }
 
     void Update()
