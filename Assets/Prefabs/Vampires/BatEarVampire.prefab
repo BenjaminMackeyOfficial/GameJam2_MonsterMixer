@@ -116,8 +116,9 @@ MonoBehaviour:
   state: 0
   eventPreheader: BatGirl
   DialougeArivedAtBar:
-  - "I heard you make a good drink\u2026 don\u2019t worry I\u2019m half Fruit Bat.
-    Can you get me something smooth and Botanical with a little hint of A positive."
+  - "I heard you make a good drink\u2026 I'm looking for something <color=\"blue\">
+    green and botanical <color=\"black\"> with a hint of some <color=\"red\"> A Positive
+    <color=\"black\">. "
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - I like the way you mix the drinks, their resonance is pleasant.
@@ -148,7 +149,7 @@ MonoBehaviour:
   enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
-  - _name: Vermouth
+  - _name: Absinthe
     _canHaveMultiple: 0
     _count: 0
   - _name: A+

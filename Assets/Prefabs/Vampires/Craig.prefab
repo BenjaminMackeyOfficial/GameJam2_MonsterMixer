@@ -116,8 +116,9 @@ MonoBehaviour:
   state: 0
   eventPreheader: Craig
   DialougeArivedAtBar:
-  - "RRRRRRRRR\u2026Wannnnnnnttttt Whiskeeeeeyy and \u2026.LIMMMMEEEEEEEE\u2026\u2026\u2026.with
-    Tangy A positiiiiveeeeee"
+  - "RRRRRRRRR\u2026Wannnnnnnttttt <color=\"blue\"> Whiskeeeeey \u2026.Souuuurrrrrrrrrr
+    <color=\"black\"> \u2026\u2026\u2026.with Tangy <color=\"red\"> A positiiiiveeeeee
+    <color=\"black\"> "
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "Chasing brains usssed to beee easyyy\u2026\u2026  now everyone eeat healthy
@@ -152,7 +153,7 @@ MonoBehaviour:
   - _name: Whiskey
     _canHaveMultiple: 0
     _count: 0
-  - _name: Lime
+  - _name: Lemon
     _canHaveMultiple: 0
     _count: 0
   - _name: A+
