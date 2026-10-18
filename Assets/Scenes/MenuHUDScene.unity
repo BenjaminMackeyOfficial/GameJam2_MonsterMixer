@@ -59523,7 +59523,7 @@ MonoBehaviour:
   - Over here to your left is the bar stand. That is where you will be mixing your
     drinks for customers.
   - Each type of ingredient has a colour code, <color="red"> Blood is Red, <color="blue">  
-    Alcohol is Blue <color=#00FFF> Glasses are Teal, <color="yellow"> Lemons are
+    Alcohol is Blue <color=#00FFFF> Glasses are Teal, <color="yellow"> Lemons are
     yellow <color="green"> and Limes are Green
   - Keep an eye when patrons are ordering their drinks.
   - These colours may come up to help you discern what your patrons are looking for.
@@ -59534,7 +59534,7 @@ MonoBehaviour:
   - '... '
   - Before you get started for your shift there's a couple of tips I would like to
     share with you.
-  - Press R/Tab to pull up your recipe card.
+  - Press R/Shift to pull up your recipe card.
   - 'This may help you make drinks that you may not have heard of before.  '
   - 'Keep in mind that these recipes<color="red">  DO NOT INCLUDE<color="white"> 
     a customer''s blood type preference. That is something you will have to remember
@@ -59544,7 +59544,7 @@ MonoBehaviour:
   - If you satisfy a patron 100%, they may give you an offering of gratitude!
   - That's just a rumor though. I would love to get my hands on a customer offering
     ; )
-  - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFF>
+  - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFFF>
     Glass <color="white">! '
   - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFF>
     Glass <color="white">! '
