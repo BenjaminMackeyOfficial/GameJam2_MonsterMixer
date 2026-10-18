@@ -295,6 +295,10 @@ public class PopupDialouge : PopupBox
     }
     //===============================================================================
 
+    private void OnDestroy()
+    {
+        DestroyPopup();
+    }
     public void DestroyPopup()
     {
         ServiceHub.Instance.popupManager.DialougeBoxDestroying(this);

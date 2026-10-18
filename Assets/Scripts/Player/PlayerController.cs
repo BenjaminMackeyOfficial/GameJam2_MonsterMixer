@@ -165,14 +165,14 @@ public class PlayerController : MonoBehaviour
         sphere1 = transform.position + heightFromCent;
         sphere2 = transform.position - heightFromCent;
 
-        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir, out hit, walkSpeed * Time.deltaTime);
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.6f, dir, out hit, walkSpeed * Time.deltaTime);
     }
     private bool CheckForCollisions(Vector3 dir)
     {
         sphere1 = transform.position + heightFromCent;
         sphere2 = transform.position - heightFromCent;
 
-        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir,walkSpeed * Time.deltaTime);
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.6f, dir,walkSpeed * Time.deltaTime);
     }
     private Vector3 AdjustMoveDir(RaycastHit hit)
     {
@@ -226,8 +226,16 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newMovePos;
         float velClamper = walkSpeed * Mathf.Clamp01(1f - (rb.linearVelocity.magnitude / walkSpeed));
+
+
         if(stateManager.grounded) 
         {
+            RaycastHit hit;
+            if(CheckForCollisions(targetDir, out hit))
+            {
+                //targetDir = AdjustMoveDir(hit);
+            }
+
             newMovePos = (targetDir * Time.deltaTime * velClamper * 10000f);
 
             //rb.AddForce(Vector3.up * jumpin, ForceMode.Impulse); // jumping
