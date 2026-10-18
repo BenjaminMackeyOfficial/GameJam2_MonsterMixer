@@ -116,7 +116,9 @@ MonoBehaviour:
   state: 0
   eventPreheader: Nurse
   DialougeArivedAtBar:
-  - Vodka lime B+
+  - 'Like O.M.G I am in so much need of a drinkkkk L.O.L!! Can I get like a <color="blue">
+    Lemon Drop <color="black"> with just a drop of <color="red"> B positive <color="black">...Ya
+    knows cause I gotta keep being positive!!! '
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "So like I\u2019m not really a huge bimbo\u2026 just a moderate one\u2026 giggle.. 
@@ -154,7 +156,7 @@ MonoBehaviour:
   - _name: Vodka
     _canHaveMultiple: 0
     _count: 0
-  - _name: Lime
+  - _name: Lemon
     _canHaveMultiple: 0
     _count: 0
   - _name: B+

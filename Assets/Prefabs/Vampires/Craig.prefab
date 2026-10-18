@@ -117,7 +117,7 @@ MonoBehaviour:
   eventPreheader: Craig
   DialougeArivedAtBar:
   - "RRRRRRRRR\u2026Wannnnnnnttttt <color=\"blue\"> Whiskeeeeey \u2026.Souuuurrrrrrrrrr
-    <color=\"black\"> \u2026\u2026\u2026.with Tangy <color=\"red\"> A positiiiiveeeeee
+    <color=\"black\"> \u2026\u2026\u2026.with Tangy <color=\"red\"> AB positiiiiveeeeee
     <color=\"black\"> "
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
@@ -156,7 +156,7 @@ MonoBehaviour:
   - _name: Lemon
     _canHaveMultiple: 0
     _count: 0
-  - _name: A+
+  - _name: AB+
     _canHaveMultiple: 0
     _count: 0
   - _name: Glass
