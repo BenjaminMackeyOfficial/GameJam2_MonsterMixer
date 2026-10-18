@@ -22869,6 +22869,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 631963691327038963, guid: 738b2f94a3b0675409b93fddda8efb83, type: 3}
+      propertyPath: GlassClinks
+      value: 
+      objectReference: {fileID: 8300000, guid: d839e4d5d8081ad4ea2bd041936b52e2, type: 3}
+    - target: {fileID: 631963691327038963, guid: 738b2f94a3b0675409b93fddda8efb83, type: 3}
       propertyPath: glassOntoTable
       value: 
       objectReference: {fileID: 8300000, guid: e1d6508bb5bd6cf4abd62c3d9801e703, type: 3}

@@ -125,11 +125,11 @@ public class AddAudio : MonoBehaviour
 
     private void PlaySFX(AudioClip clip)
     {
-        UpdateVolumeFromSlider();
+        //UpdateVolumeFromSlider();
         if (sourceSFXandDialogue != null && clip != null)
         {
-          
-            sourceSFXandDialogue.PlayOneShot(clip, 2.0f);
+            Debug.Log("Playing Dialouge"); 
+            sourceSFXandDialogue.PlayOneShot(clip, 0.35f);
         }
     }
     private void PlayDialogue(AudioClip clip)

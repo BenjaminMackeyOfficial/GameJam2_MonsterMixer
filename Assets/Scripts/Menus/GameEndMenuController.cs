@@ -168,6 +168,7 @@ public class GameEndMenuController : MonoBehaviour
 
     private void ScoreCutscene()
     {
+        ServiceHub.Instance.backgroundMusicManager.PlayMorningAfter();
         spinnin = true;
         animator.enabled = true;
         animator.Play("WinScreenAnim", 0, 0f);
