@@ -121,6 +121,9 @@ MonoBehaviour:
   - _name: 0+
     _canHaveMultiple: 0
     _count: 0
+  - _name: Lime
+    _canHaveMultiple: 0
+    _count: 0
   - _name: Glass
     _canHaveMultiple: 0
     _count: 0
@@ -148,9 +151,10 @@ MonoBehaviour:
   state: 0
   eventPreheader: Andro
   DialougeArivedAtBar:
-  - "Hello Handsome \u2026. Be a sport and mix me a Tequila Bloodmoon. what is that
-    you ask? Well it\u2019s like a tequila sunrise with a big splash of O positive...
-    you know speaking of a big positive O..."
+  - "Hello Handsome \u2026. Be a sport and mix me a Bloodmoon Margarita. what is
+    that you ask? Well, it\u2019s a <color=\"blue\"> Margaria <color=\"black\"> with
+    a big splash of <color=\"red\"> O positive <color=\"black\">... Hop to it now,
+    or do I have to explain everything to you? "
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "It\u2019s thankless work looking this good when there are so few who appreciate

@@ -116,7 +116,11 @@ MonoBehaviour:
   state: 0
   eventPreheader: Miku
   DialougeArivedAtBar:
-  - Asbinthe lime 0+
+  - 'How doth thou doith this fine after eve. I am in dire requirement of a fine
+    plant filled beverage of the magnificent green colour. Some <color="blue"> Absinthe
+    <color="black"> would do fine wonders along with both fine sour accoutrements.
+    If such thou have thy capabilities about you to add some <color="red"> O negative
+    <color="black"> to this beverage then you doth be a fine lad. '
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "Wherefore, whither doth a man repair to find a Vestal Virgin in this latter
@@ -165,7 +169,10 @@ MonoBehaviour:
   - _name: Lime
     _canHaveMultiple: 0
     _count: 0
-  - _name: 0+
+  - _name: 0-
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Lemon
     _canHaveMultiple: 0
     _count: 0
   - _name: Glass

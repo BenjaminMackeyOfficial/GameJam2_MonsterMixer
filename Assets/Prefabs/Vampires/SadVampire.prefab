@@ -116,7 +116,9 @@ MonoBehaviour:
   state: 0
   eventPreheader: Shy
   DialougeArivedAtBar:
-  - Vermouth wiskey lemon B-
+  - I'm sorry to give you a bother... can uh...can I...get a... <color="blue"> Manhattan
+    <color="black"> with something <color="red"> negative <color="black">...to match
+    me <color="red"> B <color="black"> eing so negative...
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "Today was my birthday\u2026 no one remembers\u2026 I even went out of my way
@@ -157,7 +159,7 @@ MonoBehaviour:
   - _name: Whiskey
     _canHaveMultiple: 0
     _count: 0
-  - _name: Lemon
+  - _name: Lime
     _canHaveMultiple: 0
     _count: 0
   - _name: Glass
