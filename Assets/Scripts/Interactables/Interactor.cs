@@ -96,6 +96,7 @@ public class Interactor : MonoBehaviour
 
     public void LeftClick()
     {
+        if (Time.timeScale < 0.5) return;
         if(prevInteract == null)
         {
             EventBus.RequestEvent("LeftClickNoTarget", true).Invoke();
@@ -109,7 +110,8 @@ public class Interactor : MonoBehaviour
     }
     public void RightClick()
     {
-        if(prevInteract == null)
+        if (Time.timeScale < 0.5) return;
+        if (prevInteract == null)
         {
             EventBus.RequestEvent("RightClickNoTarget", true).Invoke();
             return;

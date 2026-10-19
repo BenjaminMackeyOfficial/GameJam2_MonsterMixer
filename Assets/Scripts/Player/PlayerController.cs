@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private InputAction jump;
     private InputAction look;
     private InputAction sprint;
+    private InputAction pause;
     //
 
     
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         jump = inputActions.FindAction("Player/Jump");
         look = inputActions.FindAction("Player/Look");
         sprint = inputActions.FindAction("Player/Sprint");
+        pause = inputActions.FindAction("Player/Pause");
 
         inputActions.FindAction("Player/LeftHandInteract").started += _ => interactor.LeftClick();
         inputActions.FindAction("Player/RightHandInteract").started += _ => interactor.RightClick();
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
         heightFromCent =  Vector3.up * (transform.localScale.y / 4);
 
+        pause.started += _ => EscapeButton();
         sprint.started += _ => Shift();
         sprint.canceled += _ => ShiftReleased();
         //jump.started += Jump;
@@ -97,6 +100,10 @@ public class PlayerController : MonoBehaviour
         {
             jumpin = 0;
         }
+    }
+    private void EscapeButton()
+    {
+        EventBus.RequestEvent("EscapePressed", true).Invoke();
     }
     private void Shift()
     {
@@ -187,6 +194,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale < 0.5f) return;
         rotateForLook();
         cam.transform.rotation = lookRot;
     }
