@@ -61681,6 +61681,13 @@ MonoBehaviour:
     Glass <color="black">! '
   - 'That''s all for now! Get started making those drinks and don''t forget the <color=#00FFF>
     Glass <color="white">! '
+  rewardDialouge:
+  - 'OMG you got one! That means the rumors are true!! Keep up the good work! '
+  - 'You got another! If you keep with up we will be out of here in no time! '
+  - 'That''s 3! We''re halfway there! Keep it going! '
+  - 'Wow I can''t believe you got 4 the end looks like it''s just around the corner! '
+  - 'We can almost go home with this 5th plushie! Keep er'' going! '
+  - This is it! Time to clock out and go home!
 --- !u!33 &6244326180940898015
 MeshFilter:
   m_ObjectHideFlags: 0

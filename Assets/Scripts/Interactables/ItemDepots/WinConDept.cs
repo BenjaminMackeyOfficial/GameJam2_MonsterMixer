@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class WinConDept : ItemDepot
 {
@@ -15,6 +16,7 @@ public class WinConDept : ItemDepot
     }
     private void ResetData()
     {
+        counter = -1;
         index = -1;
     }
     private bool RecieveKeyItem(ItemTags obj)
@@ -68,9 +70,13 @@ public class WinConDept : ItemDepot
         Destroy(item);
         return null;
     }
+    private int counter = -1;
+    [SerializeField] string[] rewardDialouge;
     private void PositiveResponse()
     {
-        ServiceHub.Instance.popupManager.CreateDialouge("Yeah... thisll work", gameObject);
+        counter += 1;
+        if (counter > rewardDialouge.Length - 1) return;
+        ServiceHub.Instance.popupManager.CreateDialouge(rewardDialouge[counter], gameObject);
     }
     private void NegativeResponse()
     {
@@ -78,6 +84,6 @@ public class WinConDept : ItemDepot
     }
     private void WinningResponse()
     {
-        ServiceHub.Instance.popupManager.CreateDialouge("Well that was it... you did it.. ..see you next year... heh", gameObject);
+        //ServiceHub.Instance.popupManager.CreateDialouge("Well that was it... you did it.. ..see you next year... heh", gameObject);
     }
 }
