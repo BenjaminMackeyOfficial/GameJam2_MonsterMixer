@@ -5,8 +5,6 @@ using UnityEngine;
 public static class EventBus
 {
     public static List<CustomEvent> events = new List<CustomEvent>(); //all events get added here the minute they come into existence
-    private static List<CustomEvent> duplicateEvents = new List<CustomEvent>(); //this is if theres accidentally any events with the same name
-    //util
     public static CustomEvent RequestEvent(string eventName)
     {
         for (int i = 0; i < events.Count; i++)

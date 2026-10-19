@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
 public class GameEndMenuController : MonoBehaviour
 {
     [SerializeField] Image m_Image;
@@ -89,5 +90,102 @@ public class GameEndMenuController : MonoBehaviour
         otherImage.color = color2;
 
         TotalHardReset();
+    }
+}
+*/
+public class GameEndMenuController : MonoBehaviour
+{
+    [SerializeField] Canvas canvas;
+    [SerializeField] Image m_Image;
+    [SerializeField] Image otherImage;
+    [SerializeField] TextMeshProUGUI tipsScore;
+    [SerializeField] TextMeshProUGUI timeScore;
+    [SerializeField] RectTransform littleHand;
+    [SerializeField] RectTransform bigHand;
+    [SerializeField] GameObject continueText;
+    private Animator animator;
+
+
+    private void Start()
+    {
+        //EventBus.RequestEvent("PlayerWon", true).ping += EndGame;
+        EventBus.RequestEvent("LevelReseting", true).ping += UnloadEndSequence;
+        EventBus.RequestEvent("SpacebarPressed", true).ping += WantsToSkipSet;
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+    }
+    public void EndGame()
+    {
+        ScoreCutscene();
+    }
+
+    public void CountUpScore()
+    {
+        animator.enabled = false;
+        StartCoroutine(ScoreCountUp());
+    }
+    public void RotateClockHands()
+    {
+        spinnin = true;
+        StartCoroutine(RotateClockHandCoroutine());
+    }
+    private bool wantsToSkip = false;
+    private IEnumerator ScoreCountUp()//ticks the score up in the middle of the animation, called by an event(well, the thing that calls this is)
+    {
+        wantsToSkip = false;
+        float finalNum = ServiceHub.Instance.tips.totalTips;
+        for (int i = 0; i < finalNum; i++)
+        {
+            if (wantsToSkip) break;
+            tipsScore.text = "Score: " + i;
+            yield return null;
+        }
+        if (ServiceHub.Instance.tips.totalTips > 0) ServiceHub.Instance.audioManager.OnCheers();
+        else
+        {
+            ServiceHub.Instance.audioManager.OnLoseSound();
+            
+        }
+
+        tipsScore.text = "Score: " + finalNum;
+        continueText.SetActive(true);
+
+        while(!wantsToSkip)
+        {
+            yield return null;
+        }
+        continueText.SetActive(false);
+        ServiceHub.Instance.roundManager.ResetLevel(); // resets
+    }
+    private void WantsToSkipSet()
+    {
+        wantsToSkip = true;
+    }
+
+    private bool spinnin;
+    private IEnumerator RotateClockHandCoroutine()
+    {
+        while(spinnin)
+        {
+            bigHand.rotation *= Quaternion.Euler(0, 0, -1 * Time.deltaTime);
+            littleHand.rotation *= Quaternion.Euler(0, 0, -60 * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private void ScoreCutscene()
+    {
+        ServiceHub.Instance.backgroundMusicManager.PlayMorningAfter();
+        spinnin = true;
+        animator.enabled = true;
+        animator.Play("WinScreenAnim", 0, 0f);
+        canvas.gameObject.SetActive(true);
+    }
+    private void UnloadEndSequence()
+    {
+        spinnin = false;
+        wantsToSkip = false;
+        animator.enabled = false;
+        canvas.gameObject.SetActive(false);
     }
 }

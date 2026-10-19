@@ -16,6 +16,8 @@ public class PopupDialouge : PopupBox
     [SerializeField] float generalScale;
 
     private Vector2 targSize = Vector2.zero;
+    private AudioSource audioPlayer;
+    private AudioClip audioClip;
 
     private Vector3 GetPositionAbove(GameObject obj, Vector3 offset)
     {
@@ -49,10 +51,18 @@ public class PopupDialouge : PopupBox
 
         return obj.transform.position + offset;
     }
-
+    private void Start()
+    {
+        EventBus.RequestEvent("LevelReseting", true).ping += StopTypewriter;
+    }
+    private void StopTypewriter()
+    {
+        if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
+    }
     public void Initialize(GameObject givenAttatchedObj)
     {
-        if(generalScale <= 0.001f)generalScale = 1f;
+        audioPlayer = GetComponent<AudioSource>();
+        if (generalScale <= 0.001f)generalScale = 1f;
 
         attatchedObj = givenAttatchedObj;
         transform.position = GetPositionAbove(attatchedObj,Vector3.up * (generalScale * 2));
@@ -70,6 +80,25 @@ public class PopupDialouge : PopupBox
         EventBus.RequestEvent("CancelRightHandInspectDialouge", true).ping += cancR;
         EventBus.RequestEvent("CancelLeftHandInspectDialouge", true).ping += cancL;
         //
+    }
+    public override void ShowCanvas(string includes, bool forceHandsCam, bool holdUntilFinished)
+    {
+        base.ShowCanvas(includes);//doesnt do anything
+
+        if (forceHandsCam)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Hands");
+            selfCanvasPlane.worldCamera = ServiceHub.Instance.cameras.overlayCamera;
+            selfCanvasPlane.GetComponent<FaceThePlayer>().enabled = false;
+
+            selfCanvasPlane.transform.LookAt(selfCanvasPlane.worldCamera.transform);
+            selfCanvasPlane.transform.rotation *= Quaternion.Euler(0, 180, 0);
+        }
+        else selfCanvasPlane.worldCamera = ServiceHub.Instance.cameras.mainCamera;
+
+        transform.SetParent(attatchedObj.transform);
+        if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
+        typeWriter = StartCoroutine(TypewriterEffect(includes, holdUntilFinished));
     }
 
     public override void ShowCanvas(string includes, bool forceHandsCam)
@@ -89,7 +118,7 @@ public class PopupDialouge : PopupBox
 
         transform.SetParent(attatchedObj.transform);
         if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
-        typeWriter = StartCoroutine(TypewriterEffect(includes));
+        typeWriter = StartCoroutine(TypewriterEffect(includes, false));
     }
 
     public override void ShowCanvas(string includes)
@@ -101,7 +130,7 @@ public class PopupDialouge : PopupBox
         transform.SetParent(attatchedObj.transform);
 
         if (isTypewriterActive && typeWriter != null) StopCoroutine(typeWriter);
-        typeWriter = StartCoroutine(TypewriterEffect(includes));
+        typeWriter = StartCoroutine(TypewriterEffect(includes, false));
     }
 
 
@@ -148,10 +177,16 @@ public class PopupDialouge : PopupBox
     }
     //
 
-    public IEnumerator TypewriterEffect(string dialogueString)
+    public IEnumerator TypewriterEffect(string dialogueString, bool hold)
     {
         text.text = "";
         isTypewriterActive = true;
+
+        if (audioClip == null && attatchedObj.TryGetComponent<AudioSoundDataBin>(out AudioSoundDataBin bin))
+        {
+            Debug.Log("clip found");
+            audioClip = bin.clip;
+        }
 
         float locSpeed = typerwriterSpeed;
 
@@ -162,51 +197,65 @@ public class PopupDialouge : PopupBox
             text.fontStyle = FontStyles.Bold | FontStyles.Italic;
             dialogueString = dialogueString.Substring(2);
         }
-
+        
         bool switchCount = false;
-        foreach (char letter in dialogueString.ToCharArray())
+        for (int i = 0; i < dialogueString.Length; i++)
         {
             //CODE VOMIT, FIX LATER
             if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))
             {
                 break;
             }
-            if(attatchedObj == null || (cancelRight && attatchedObj.name == "InspectUiTargetR"))
+            if (attatchedObj == null || (cancelRight && attatchedObj.name == "InspectUiTargetR"))
             {
                 break;
             }
             //===================
             locSpeed = typerwriterSpeed;
 
+            if (dialogueString[i] == '<') //ads the whole tag so you dont see it getting typed
+            {
+                int tagEnd = dialogueString.IndexOf('>', i);
+
+                if (tagEnd != -1)
+                {
+                    text.text += dialogueString.Substring(i, tagEnd - i + 1);
+                    i = tagEnd;
+
+                    continue;
+                }
+            }
+
+            char letter = dialogueString[i];
+
             if (text.text.Length % 40 == 0) switchCount = true;
-            if (slowCharachters.Contains(letter)) locSpeed = slowDownMult; //slowing down for periods
-            if(skipCharachters.Contains(letter)) locSpeed = 0.001f; // skipping things like spaces
+            if (slowCharachters.Contains(letter)) locSpeed = slowDownMult;
+            if (skipCharachters.Contains(letter)) locSpeed = 0.001f;
+
             if (letter == ' ' && switchCount)
             {
                 switchCount = false;
                 text.text += "\n";
             }
-         
-            
+
             text.text += letter;
+            if(audioClip!= null && text.text.Length % 3 == 0)audioPlayer.PlayOneShot(audioClip);
 
             ResizeCanvas();
 
             if (text.text.Length > 70 && letter == '.')
             {
-                Debug.Log("EEEEUUUU");
-                yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(Mathf.Clamp(text.text.Length * 0.05f, 0, 4));
                 text.text = "";
             }
 
             yield return new WaitForSeconds(locSpeed);
-
         }
 
         for (int i = 0; i < 400; i++)
         {
             //CODE VOMIT, FIX LATER
-            if (attatchedObj == null) Destroy(gameObject);
+            if (attatchedObj == null) DestroyPopup();
             if (attatchedObj == null || (cancelLeft && attatchedObj.name == "InspectUiTargetL"))
             {
                 cancelLeft = false;
@@ -216,7 +265,7 @@ public class PopupDialouge : PopupBox
                 yield return new WaitForSeconds(0.05f);
 
                 isTypewriterActive = false;
-                Destroy(gameObject);
+                DestroyPopup();
             }
             if (attatchedObj == null || (cancelRight && attatchedObj.name == "InspectUiTargetR"))
             {
@@ -227,22 +276,33 @@ public class PopupDialouge : PopupBox
                 yield return new WaitForSeconds(0.05f);
 
                 isTypewriterActive = false;
-                Destroy(gameObject);
+                DestroyPopup();
             }
             //===================
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        text.text = "";
-        targSize = Vector2.zero;
         
-        yield return new WaitForSeconds(0.05f);
-
-        isTypewriterActive = false;
-        Destroy(gameObject);
+        if(!hold)
+        {
+            text.text = "";
+            targSize = Vector2.zero;
+            yield return new WaitForSeconds(0.05f);
+            isTypewriterActive = false;
+            DestroyPopup();
+        }
 
     }
     //===============================================================================
+
+    private void OnDestroy()
+    {
+        DestroyPopup();
+    }
+    public void DestroyPopup()
+    {
+        ServiceHub.Instance.popupManager.DialougeBoxDestroying(this);
+    }
 
     void Update()
     {

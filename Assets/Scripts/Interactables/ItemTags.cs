@@ -41,8 +41,6 @@ public class ItemTags : MonoBehaviour
 
     public static bool DoIQualifyForDrinkPng(ItemTags item)
     {
-        Debug.Log(item.HasTag("Glass"));
-        Debug.Log("Tag count:" + item._tags.Count);
         if (item.HasTag("Glass") != null && item._tags.Count >= 1)
         {
             return true;

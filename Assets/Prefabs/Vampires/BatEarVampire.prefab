@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5186290787743790253}
   - component: {fileID: -8199644707037326699}
   - component: {fileID: 5651230876736576800}
+  - component: {fileID: 62478807917272061}
   m_Layer: 0
   m_Name: BatEarVampire
   m_TagString: Untagged
@@ -115,8 +116,9 @@ MonoBehaviour:
   state: 0
   eventPreheader: BatGirl
   DialougeArivedAtBar:
-  - "I heard you make a good drink\u2026 don\u2019t worry I\u2019m half Fruit Bat.
-    Can you get me something smooth and Botanical with a little hint of A positive."
+  - "I heard you make a good drink\u2026 I'm looking for something <color=\"blue\">
+    green and botanical <color=\"black\"> with a hint of some <color=\"red\"> A Positive
+    <color=\"black\">. "
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - I like the way you mix the drinks, their resonance is pleasant.
@@ -147,7 +149,7 @@ MonoBehaviour:
   enforceAllTags: 0
   hasInfinate: 0
   wantedTags:
-  - _name: Vermouth
+  - _name: Absinthe
     _canHaveMultiple: 0
     _count: 0
   - _name: A+
@@ -194,3 +196,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &62478807917272061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474969110352684941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: d38906e4286473c409e56830cb476e34, type: 3}

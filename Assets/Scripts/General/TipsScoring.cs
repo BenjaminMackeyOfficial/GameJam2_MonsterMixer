@@ -2,7 +2,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class TipsScoring : MonoBehaviour
+public class TipsScoring : MonoBehaviour // should be called scoring... a little confusing
 {
     public int totalTips {get; private set;} = 0;
     [SerializeField] TextMeshProUGUI tipsLabel;
@@ -10,11 +10,12 @@ public class TipsScoring : MonoBehaviour
     public void Start()
     {
         EventBus.RequestEvent("BonusTip", true).ping += AddBonusTip;
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetScore;
     }
     
     public void AddTipAmount(int ammount)
     {
-        totalTips += math.clamp(ammount, 0, int.MaxValue);
+        totalTips += math.clamp(ammount, int.MinValue, int.MaxValue);
         TipAddEffect();
     }
     public void AddTipAmount(float ammount)
@@ -37,8 +38,9 @@ public class TipsScoring : MonoBehaviour
     {
         
     }
-    private void Reset()
+    private void ResetScore()
     {
+        ServiceHub.Instance.fileManager.AlertDataOfNewScore(totalTips);
         totalTips = 0;
     }
 

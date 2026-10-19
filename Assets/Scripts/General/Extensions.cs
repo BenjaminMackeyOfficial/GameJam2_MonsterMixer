@@ -27,6 +27,8 @@ public static class Utility
         Vector3 half = box.size * 0.5f;
         Vector3 centre = box.center;
 
+        outlineMat.color = color;
+
         Vector3[] corners =
         {
         centre + new Vector3(-half.x, -half.y, -half.z),
@@ -45,9 +47,6 @@ public static class Utility
             { 4, 5 }, { 5, 6 }, { 6, 7 }, { 7, 4 },
             { 0, 4 }, { 1, 5 }, { 2, 6 }, { 3, 7 }
         };
-
-        if (color == default)
-            color = Color.green;
 
         for (int i = 0; i < 12; i++)
         {

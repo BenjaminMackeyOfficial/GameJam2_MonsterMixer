@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private PlayerStateManager stateManager;
-    private GameObject cam;
+    public GameObject cam;
     private Camera camCamera;
 
     //adjustables
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputActionAsset inputActions;
 
     private InputAction move;
-    //private InputAction jump; (i dont think we're having a jump?)
+    private InputAction jump;
     private InputAction look;
     private InputAction sprint;
     //
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         if(inputActions == null) this.enabled = false;
 
         move = inputActions.FindAction("Player/Move");
-        //jump = inputActions.FindAction("Player/Jump");
+        jump = inputActions.FindAction("Player/Jump");
         look = inputActions.FindAction("Player/Look");
         sprint = inputActions.FindAction("Player/Sprint");
 
@@ -77,8 +77,11 @@ public class PlayerController : MonoBehaviour
 
         heightFromCent =  Vector3.up * (transform.localScale.y / 4);
 
+        sprint.started += _ => Shift();
+        sprint.canceled += _ => ShiftReleased();
         //jump.started += Jump;
         //jump.canceled += Jump;
+        jump.started += _ => Spacebar();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -95,14 +98,36 @@ public class PlayerController : MonoBehaviour
             jumpin = 0;
         }
     }
+    private void Shift()
+    {
+        EventBus.RequestEvent("ShiftPressed", true).Invoke();
+    }
+    private void ShiftReleased()
+    {
+        EventBus.RequestEvent("ShiftReleased", true).Invoke();
+    }
+    private void Spacebar()
+    {
+        EventBus.RequestEvent("SpacebarPressed", true).Invoke();
+        
+    }
 
+    private Vector3 startPos;
+    private void ResetData()
+    {
+        Debug.Log(transform.position + " | " + startPos);
+
+        rb.position = startPos;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
     private void rotateForLook()
     {
         if (stateManager.dead) return;
         Vector2 lookInput = -look.ReadValue<Vector2>();
 
-        yLookAngle = Mathf.Clamp(yLookAngle + lookInput.y * pitchLookSensitivity * Time.deltaTime, -maxLookPitch, maxLookPitch);
-        xLookAngle -= lookInput.x * yawLookSensitivity * Time.deltaTime;
+        yLookAngle = Mathf.Clamp(yLookAngle + lookInput.y * pitchLookSensitivity, -maxLookPitch, maxLookPitch);
+        xLookAngle -= lookInput.x * yawLookSensitivity;
         if (ServiceHub.Instance.gameState.gameplayState == GameState.GameplayState.Menu) xLookAngle = math.clamp(xLookAngle, -40, 40);
         lookRot = Quaternion.Euler(
             yLookAngle,
@@ -140,18 +165,18 @@ public class PlayerController : MonoBehaviour
         sphere1 = transform.position + heightFromCent;
         sphere2 = transform.position - heightFromCent;
 
-        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir, out hit, walkSpeed * Time.deltaTime);
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.6f, dir, out hit, walkSpeed * Time.deltaTime);
     }
     private bool CheckForCollisions(Vector3 dir)
     {
         sphere1 = transform.position + heightFromCent;
         sphere2 = transform.position - heightFromCent;
 
-        return Physics.CapsuleCast(sphere1 , sphere2 , 0.5f, dir,walkSpeed * Time.deltaTime);
+        return Physics.CapsuleCast(sphere1 , sphere2 , 0.6f, dir,walkSpeed * Time.deltaTime);
     }
     private Vector3 AdjustMoveDir(RaycastHit hit)
     {
-        Vector3 returnVec = Vector3.Reflect(targetDir, hit.normal);
+        Vector3 returnVec = Vector3.ProjectOnPlane(targetDir, hit.normal).normalized;
 
         float speedLoss = Mathf.Abs((returnVec - targetDir).magnitude) * Bouncyness;
 
@@ -183,10 +208,13 @@ public class PlayerController : MonoBehaviour
     {
         targProg = 0;
     }
-    private void Start()
+    void Start()
     {
         camCamera = cam.GetComponent<Camera>();
+        ServiceHub.Instance.player = gameObject;
 
+        EventBus.RequestEvent("LevelReseting", true).ping += ResetData;
+        startPos = transform.position;
     }
 
     void FixedUpdate()
@@ -198,8 +226,16 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newMovePos;
         float velClamper = walkSpeed * Mathf.Clamp01(1f - (rb.linearVelocity.magnitude / walkSpeed));
+
+
         if(stateManager.grounded) 
         {
+            RaycastHit hit;
+            if(CheckForCollisions(targetDir, out hit))
+            {
+                //targetDir = AdjustMoveDir(hit);
+            }
+
             newMovePos = (targetDir * Time.deltaTime * velClamper * 10000f);
 
             //rb.AddForce(Vector3.up * jumpin, ForceMode.Impulse); // jumping

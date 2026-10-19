@@ -58,7 +58,7 @@ public class ItemDepot : MonoBehaviour, Iinteractable
     {
         EventBus.RequestEvent("ItemHovered", true).Invoke();
         if (outline != null) Destroy(outline);
-        outline = Utility.CreateBoxColliderOutline(GetComponent<BoxCollider>(), Color.yellow, ServiceHub.Instance.generalOutlineMat);
+        outline = Utility.CreateBoxColliderOutline(GetComponent<BoxCollider>(), hoverColor, ServiceHub.Instance.generalOutlineMat);
     }
     public void UnHover()
     {
@@ -175,16 +175,6 @@ public class ItemDepot : MonoBehaviour, Iinteractable
 
     protected virtual void Start()
     {
-        if(this.GetComponent<Outline>() == null)
-        {
-            Outline outline = this.AddComponent<Outline>();
-            outline.effectColor = hoverColor;
-        }
-        else
-        {
-            Outline outline = this.GetComponent<Outline>();
-            outline.effectColor = hoverColor;
-        }
 
         if(type == DepotType.Give && heldObject == null)
         {

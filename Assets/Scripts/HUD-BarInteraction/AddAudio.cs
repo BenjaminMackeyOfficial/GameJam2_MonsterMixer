@@ -34,6 +34,7 @@ public class AddAudio : MonoBehaviour
     [SerializeField] public AudioClip NurseAudioclip;
     [SerializeField] public AudioClip VampFabioAudioclip;
     [SerializeField] public AudioClip ZombusterAudioclip;
+    [SerializeField] public AudioClip loseSound;
 
     [Header("Audio Setup")]
     [SerializeField] public AudioSource sourceSFXandDialogue;
@@ -108,6 +109,7 @@ public class AddAudio : MonoBehaviour
 
     public void OnSlicingLemonLimes() { PlaySFX(SlicingLemonLimes); }
     public void OnCheers() { PlaySFX(Cheers); }
+    public void OnLoseSound() { PlaySFX(loseSound); }
     public void OnGlassClinks() { PlaySFX(GlassClinks); }
     public void OnSingleVGlassClink() { PlaySFX(SingleVGlassClink); }
     public void OnPourDrink()  { PlaySFX(PourDrink); }
@@ -125,11 +127,11 @@ public class AddAudio : MonoBehaviour
 
     private void PlaySFX(AudioClip clip)
     {
-        UpdateVolumeFromSlider();
+        //UpdateVolumeFromSlider();
         if (sourceSFXandDialogue != null && clip != null)
         {
-          
-            sourceSFXandDialogue.PlayOneShot(clip, 2.0f);
+            Debug.Log("Playing Dialouge"); 
+            sourceSFXandDialogue.PlayOneShot(clip, 0.35f);
         }
     }
     private void PlayDialogue(AudioClip clip)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 542758074781988030}
   - component: {fileID: -5387772041345180405}
   - component: {fileID: 5413214691402542820}
+  - component: {fileID: -5001256959797352073}
   m_Layer: 0
   m_Name: MikuNosferatu
   m_TagString: Untagged
@@ -115,13 +116,11 @@ MonoBehaviour:
   state: 0
   eventPreheader: Miku
   DialougeArivedAtBar:
-  - "Forgif me god hlaford ic wolde biddan \xFEe for drenc\u2026. I crave thy pardon,
-    and do humbly beg forgiveness for my rude and thoughtless carriage toward thee\u2026  
-    Good sir, I crave thy pardon, for I would fain petition thee for a draught of
-    rare delight. Methinks an absinthe, laced with but a twist of O positive and
-    a curl of lime, would suit my humour passing well. Mark me, though \u2014 a twist,
-    no more! For shouldst thou drown it in excess, I'll send the cup back whence
-    it came, and thou shalt know my displeasure."
+  - 'How doth thou doith this fine after eve. I am in dire requirement of a fine
+    plant filled beverage of the magnificent green colour. Some <color="blue"> Absinthe
+    <color="black"> would do fine wonders along with both fine sour accoutrements.
+    If such thou have thy capabilities about you to add some <color="red"> O negative
+    <color="black"> to this beverage then you doth be a fine lad. '
   DialougeUnhappyMidDrinkMake: []
   DialougePleasedMidDrinkMake:
   - "Wherefore, whither doth a man repair to find a Vestal Virgin in this latter
@@ -170,7 +169,10 @@ MonoBehaviour:
   - _name: Lime
     _canHaveMultiple: 0
     _count: 0
-  - _name: 0+
+  - _name: 0-
+    _canHaveMultiple: 0
+    _count: 0
+  - _name: Lemon
     _canHaveMultiple: 0
     _count: 0
   - _name: Glass
@@ -214,3 +216,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 128, y: 128, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5001256959797352073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3728614183372725850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13279d43ac0504cba4ab183b22e68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSoundDataBin
+  clip: {fileID: 8300000, guid: 49c4b8c36fdce6b4a9fa515ae7b722e9, type: 3}
